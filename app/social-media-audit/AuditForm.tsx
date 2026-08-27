@@ -93,7 +93,10 @@ export default function AuditForm() {
       `${copy.summary.title}\n\n${copy.summary.preparedFor}: ${data.name}\n${copy.labels.brand.replace(" *", "")}: ${data.brand}\n${copy.labels.email.replace(" *", "")}: ${data.email}\n${copy.labels.phone}: ${data.phone}\n${copy.labels.industry}: ${data.industry}\n${copy.labels.country}: ${data.country}\n${copy.labels.platform}: ${data.platforms}\n${copy.summary.accountLinks}: ${data.handles}\n${copy.summary.mainGoal}: ${data.goal}\n${copy.summary.currentChallenge}: ${data.challenge}\n${copy.summary.competitors}: ${data.competitors}\n${copy.summary.requestedAnalysis}: ${selectedLabels.join(", ")}\n${copy.summary.notes}: ${data.notes}`,
     );
 
-    window.location.href = `mailto:habiba.dapour@gmail.com?subject=${subject}&body=${body}`;
+    window.open(
+      `mailto:habiba.dapour@gmail.com?subject=${subject}&body=${body}`,
+      "_self",
+    );
   }
 
   if (complete) {

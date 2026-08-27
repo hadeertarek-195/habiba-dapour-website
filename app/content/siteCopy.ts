@@ -1,6 +1,6 @@
 export type Language = "en" | "ar";
 
-export const profileImageUrl = "https://i.ibb.co/CpXDwYyW/2.webp";
+export const profileImageUrl = "https://i.ibb.co/Z1vvQmQ0/2.webp";
 
 export const auditAreas = [
   {
@@ -62,7 +62,7 @@ export const siteCopy = {
       home: "Home",
       portfolio: "Portfolio",
       audit: "Social Media Audit",
-      book: "Book a consultation",
+      book: "Book your consultation",
       menu: "Menu",
     },
     footer: {
@@ -72,18 +72,27 @@ export const siteCopy = {
     },
     home: {
       eyebrow: "Social media account manager",
-      titleTop: "Making social",
-      titleBottom: "make sense.",
+      titleTop: "I help you improve",
+      titleBottom: "your social media presence.",
       intro:
         "I'm Habiba Dapour, an Egyptian Account Manager with 5+ years of experience turning social media activity into focused, measurable growth.",
-      primaryCta: "Book a consultation",
-      secondaryCta: "Explore my work",
+      primaryCta: "Book your consultation",
+      secondaryCta: "See my work",
       metrics: [
         ["5+", "years in social"],
         ["250+", "orders in 6 months"],
         ["6.5K", "followers in < 1 month"],
       ],
-      marquee: ["CONTENT", "PERFORMANCE", "COMMUNITY", "STRATEGY"],
+      marquee: [
+        "CONTENT",
+        "PERFORMANCE",
+        "COMMUNITY",
+        "STRATEGY",
+        "AUDITS",
+        "GROWTH",
+        "CONTENT",
+        "PERFORMANCE",
+      ],
       aboutEyebrow: "A little context",
       aboutTitleTop: "A numbers person",
       aboutTitleBottom: "with a people instinct.",
@@ -129,7 +138,7 @@ export const siteCopy = {
       proofTitleBottom: "Less than one month.",
       proofCopy:
         "For a Syrian restaurant, I used Egyptian Arabic, Ramadan trends and interactive competitions to make the brand feel familiar while keeping advertising costs efficient.",
-      proofLink: "Read the case studies",
+      proofLink: "See the case studies",
       proofCards: [
         "250+ orders from a personal product experiment in six months.",
         "Clear analysis without hiding behind marketing jargon.",
@@ -180,7 +189,7 @@ export const siteCopy = {
       result: "The result",
       ctaEyebrow: "Your account",
       ctaTitle: "Wondering what your numbers are trying to tell you?",
-      ctaButton: "Start a social media audit",
+      ctaButton: "Start your social media audit",
       cases: [
         {
           index: "01",
@@ -280,7 +289,7 @@ export const siteCopy = {
         "LinkedIn",
         "Multiple platforms",
       ],
-      reviewButton: "Review my audit brief",
+      reviewButton: "Review your audit brief",
       summary: {
         title: "Social media audit request",
         preparedFor: "Prepared for",
@@ -308,7 +317,7 @@ export const siteCopy = {
       home: "الرئيسية",
       portfolio: "الأعمال",
       audit: "تدقيق السوشيال ميديا",
-      book: "احجزي استشارة",
+      book: "احجز استشارتك",
       menu: "القائمة",
     },
     footer: {
@@ -318,18 +327,27 @@ export const siteCopy = {
     },
     home: {
       eyebrow: "مديرة حسابات سوشيال ميديا",
-      titleTop: "نخلي السوشيال",
-      titleBottom: "أوضح وأسهل.",
+      titleTop: "أساعدك على تطوير",
+      titleBottom: "ظهورك على السوشيال ميديا",
       intro:
         "أنا Habiba Dapour، مديرة حسابات مصرية بخبرة أكثر من 5 سنوات في تحويل نشاط السوشيال ميديا إلى نمو واضح وقابل للقياس.",
-      primaryCta: "احجزي استشارة",
-      secondaryCta: "شاهدي أعمالي",
+      primaryCta: "احجز استشارتك",
+      secondaryCta: "شاهد أعمالي",
       metrics: [
         ["5+", "سنوات خبرة في السوشيال ميديا"],
         ["250+", "طلب خلال 6 شهور"],
         ["6.5K", "متابع في أقل من شهر"],
       ],
-      marquee: ["محتوى", "أداء", "مجتمع", "استراتيجية"],
+      marquee: [
+        "محتوى",
+        "أداء",
+        "مجتمع",
+        "استراتيجية",
+        "تحليل",
+        "نمو",
+        "محتوى",
+        "أداء",
+      ],
       aboutEyebrow: "نبذة سريعة",
       aboutTitleTop: "أفكر بالأرقام",
       aboutTitleBottom: "وأفهم الناس جيدًا.",
@@ -375,7 +393,7 @@ export const siteCopy = {
       proofTitleBottom: "في أقل من شهر.",
       proofCopy:
         "مع مطعم سوري، استخدمت اللهجة المصرية والترندات الرمضانية والمسابقات التفاعلية لجعل البراند أقرب للجمهور مع الحفاظ على كفاءة تكلفة الإعلان.",
-      proofLink: "شاهدي دراسات الحالة",
+      proofLink: "شاهد دراسات الحالة",
       proofCards: [
         "أكثر من 250 طلبًا من تجربة منتج شخصية خلال 6 شهور.",
         "تحليل واضح بدون تعقيد أو مصطلحات تسويقية مبالغ فيها.",
@@ -395,22 +413,22 @@ export const siteCopy = {
         ],
         [
           "03",
-          "تتحركي",
-          "تخرجي بأولويات واضحة وتوصيات عملية وخطوة تالية واثقة.",
+          "تتحرك",
+          "تخرج بأولويات واضحة وتوصيات عملية وخطوة تالية واثقة.",
         ],
       ],
       consultationEyebrow: "الاستشارة",
       consultationTitleTop: "صفحتك بتتكلم.",
       consultationTitleBottom: "خلينا نفهم الأرقام.",
       consultationCopy:
-        "احجزي مكالمة مركزة عن الأداء الحالي والتحديات وأفضل خطوة جاية لحسابك.",
-      consultationLabel: "مناسبة إذا كنتِ تحتاجين",
+        "احجز مكالمة مركزة عن الأداء الحالي والتحديات وأفضل خطوة جاية لحسابك.",
+      consultationLabel: "مناسبة إذا كنت تحتاج",
       consultationList: [
         "أداء غير واضح أو متراجع",
         "محتوى لا يحقق التحويل المطلوب",
         "استراتيجية تحتاج لاتجاه جديد",
       ],
-      consultationButton: "احجزي عبر واتساب",
+      consultationButton: "احجز عبر واتساب",
       consultationEmail: "أو راسليني على habiba.dapour@gmail.com",
       whatsappMessage: "مرحبًا Habiba، أرغب في حجز استشارة للسوشيال ميديا.",
     },
@@ -424,8 +442,8 @@ export const siteCopy = {
       move: "الخطوة",
       result: "النتيجة",
       ctaEyebrow: "حسابك أنت",
-      ctaTitle: "هل تريدين معرفة ماذا تحاول أرقامك أن تقول؟",
-      ctaButton: "ابدئي تدقيق السوشيال ميديا",
+      ctaTitle: "هل تريد معرفة ماذا تحاول أرقامك أن تقول؟",
+      ctaButton: "ابدأ تدقيق السوشيال ميديا",
       cases: [
         {
           index: "01",
@@ -473,22 +491,22 @@ export const siteCopy = {
     },
     audit: {
       eyebrow: "تدقيق السوشيال ميديا",
-      titleTop: "اعرفي ما الذي يحتاج إصلاحًا.",
+      titleTop: "اعرف ما الذي يحتاج إصلاحًا.",
       titleBottom: "وما الذي يجب الحفاظ عليه.",
       intro:
-        "مراجعة أداء منظمة تحوّل الأرقام المتفرقة إلى قرارات واضحة. املئي النموذج التالي للبدء.",
+        "مراجعة أداء منظمة تحوّل الأرقام المتفرقة إلى قرارات واضحة. املأ النموذج التالي للبدء.",
       asideTitle: "ملف التدقيق الخاص بك",
       asideCopy:
         "الحقول المطلوبة موضحة بعلامة النجمة. سيتم استخدام المعلومات فقط لتحضير هذا الطلب والرد عليه.",
       asideNoteTitle: "قبل البدء",
       asideNoteCopy:
-        "جهزي روابط الحسابات والهدف التجاري الأساسي. وبعد الإكمال يمكنك حفظ نسخة PDF من الطلب.",
+        "جهز روابط الحسابات والهدف التجاري الأساسي. وبعد الإكمال يمكنك حفظ نسخة PDF من الطلب.",
       sections: {
         aboutYou: "عنك",
         aboutAccounts: "عن الحسابات",
-        analyze: "ما الذي تريدين تحليله؟",
+        analyze: "ما الذي تريد تحليله؟",
       },
-      fieldHelp: "اختاري كل العناصر التي تريدين تضمينها في التدقيق.",
+      fieldHelp: "اختر كل العناصر التي تريد تضمينها في التدقيق.",
       labels: {
         name: "الاسم الكامل *",
         brand: "البراند / الشركة *",
@@ -512,10 +530,10 @@ export const siteCopy = {
         phone: "+20 ...",
         industry: "مثلًا: المجال الطبي",
         country: "مثلًا: مصر",
-        handles: "أضيفي رابطًا واحدًا في كل سطر",
-        goal: "ما الذي تريدين أن تساعدك السوشيال ميديا في تحقيقه؟",
+        handles: "أضف رابطًا واحدًا في كل سطر",
+        goal: "ما الذي تريد أن تساعدك السوشيال ميديا في تحقيقه؟",
         challenge: "ما الذي يبدو غير واضح أو لا يعمل بالشكل المطلوب؟",
-        competitors: "أضيفي حتى ثلاثة روابط لحسابات منافسة",
+        competitors: "أضف حتى ثلاثة روابط لحسابات منافسة",
         notes: "قيود الوصول، مواعيد إطلاق، حملات سابقة...",
       },
       platforms: [
@@ -525,7 +543,7 @@ export const siteCopy = {
         "LinkedIn",
         "أكثر من منصة",
       ],
-      reviewButton: "راجعي ملف التدقيق",
+      reviewButton: "راجع ملف التدقيق",
       summary: {
         title: "طلب تدقيق سوشيال ميديا",
         preparedFor: "تم الإعداد لصالح",
@@ -538,10 +556,10 @@ export const siteCopy = {
         notes: "ملاحظات",
         nextTitle: "ماذا يحدث بعد ذلك؟",
         nextCopy:
-          "أرسلي هذا الطلب إلى Habiba. وبعد مراجعة البيانات المتاحة للحساب ستؤكد نطاق التدقيق والمدة والخطوات التالية.",
+          "أرسل هذا الطلب إلى Habiba. وبعد مراجعة البيانات المتاحة للحساب ستؤكد نطاق التدقيق والمدة والخطوات التالية.",
         sendEmail: "إرسال الطلب عبر البريد",
         print: "طباعة / حفظ كـ PDF",
-        edit: "تعديل البيانات",
+        edit: "عدّل البيانات",
         notSpecified: "غير محدد",
         locationNotSpecified: "الموقع غير محدد",
       },

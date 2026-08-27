@@ -37,6 +37,9 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Focused social media strategy, management and performance analysis.",
       images: ["/og.png"],
     },
+    other: {
+      "codex-preview": "development",
+    },
   };
 }
 

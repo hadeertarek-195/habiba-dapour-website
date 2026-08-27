@@ -20,15 +20,17 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === "undefined") {
+      return "en";
+    }
 
-  useEffect(() => {
     const savedLanguage = window.localStorage.getItem("habiba-language");
 
-    if (savedLanguage === "ar" || savedLanguage === "en") {
-      setLanguage(savedLanguage);
-    }
-  }, []);
+    return savedLanguage === "ar" || savedLanguage === "en"
+      ? savedLanguage
+      : "en";
+  });
 
   useEffect(() => {
     const isArabic = language === "ar";

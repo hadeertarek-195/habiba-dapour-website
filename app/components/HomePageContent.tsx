@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 
+import CountUpValue from "./CountUpValue";
+import { featuredCaseStudy } from "../content/featuredCaseStudy";
 import { siteCopy, profileImageUrl } from "../content/siteCopy";
 import { useLanguage } from "./LanguageProvider";
 import { Footer, Header } from "./SiteChrome";
@@ -9,7 +11,8 @@ import { Footer, Header } from "./SiteChrome";
 export default function HomePageContent() {
   const { isArabic, language } = useLanguage();
   const copy = siteCopy[language].home;
-  const whatsappHref = `https://wa.me/201065813654?text=${encodeURIComponent(copy.whatsappMessage)}`;
+  const resultsCopy = featuredCaseStudy[language].homeResults;
+  const whatsappHref = `https://wa.me/201004658868?text=${encodeURIComponent(copy.whatsappMessage)}`;
 
   return (
     <>
@@ -30,7 +33,7 @@ export default function HomePageContent() {
               <a className="button primary" href="#consultation">
                 {copy.primaryCta} <span aria-hidden="true">↗</span>
               </a>
-              <Link className="button ghost" href="/portfolio">
+              <Link className="button ghost" href="/portfolio#saudi-organic-growth">
                 {copy.secondaryCta}
               </Link>
             </div>
@@ -58,7 +61,9 @@ export default function HomePageContent() {
 
         <section className="marquee" aria-label="Areas of expertise">
           <div>
-            {copy.marquee.concat(copy.marquee).map((item, index) => (
+            {copy.marquee
+              .concat(copy.marquee, copy.marquee)
+              .map((item, index) => (
               <span key={`${item}-${index}`}>
                 {item}
                 <i>✦</i>
@@ -84,6 +89,50 @@ export default function HomePageContent() {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+        </section>
+
+        <section className="section shell results-section">
+          <div className="section-heading results-heading">
+            <div>
+              <p className="eyebrow">
+                <span /> {resultsCopy.eyebrow}
+              </p>
+              <h2>{resultsCopy.heading}</h2>
+            </div>
+            <p>{resultsCopy.copy}</p>
+          </div>
+          <div className="results-grid">
+            {resultsCopy.cards.map((card) => (
+              <article className="result-card" key={card.label}>
+                <strong className="result-value">
+                  {card.kind === "count" ? (
+                    <CountUpValue
+                      end={card.value}
+                      suffix={card.suffix}
+                    />
+                  ) : null}
+                  {card.kind === "range" ? (
+                    <>
+                      <span className="inline-ltr">{card.from}</span>
+                      <span className="result-arrow">→</span>
+                      <CountUpValue
+                        end={card.to}
+                        format={(value) => value.toLocaleString("en-US")}
+                      />
+                    </>
+                  ) : null}
+                  {card.kind === "prefix" ? (
+                    <CountUpValue end={card.value} prefix={card.prefix} />
+                  ) : null}
+                </strong>
+                <span className="result-label">{card.label}</span>
+                <p>{card.supporting}</p>
+              </article>
+            ))}
+          </div>
+          <Link className="results-cta" href="/portfolio#saudi-organic-growth">
+            {resultsCopy.cta} <span aria-hidden="true">→</span>
+          </Link>
         </section>
 
         <section className="section soft-section" id="services">
@@ -127,7 +176,7 @@ export default function HomePageContent() {
               {copy.proofTitleBottom}
             </h2>
             <p>{copy.proofCopy}</p>
-            <Link href="/portfolio">
+            <Link href="/portfolio#saudi-organic-growth">
               {copy.proofLink} <span aria-hidden="true">→</span>
             </Link>
           </div>
