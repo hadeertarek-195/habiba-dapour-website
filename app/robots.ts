@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import { siteUrlString } from "./content/siteConfig";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://habiba-dapour-portfolio.hadeer-tarek26.chatgpt.site/sitemap.xml",
+    sitemap: `${siteUrlString}sitemap.xml`,
   };
 }

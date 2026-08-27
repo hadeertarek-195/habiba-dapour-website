@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { siteUrl, siteUrlString } from "./content/siteConfig";
 import { LanguageProvider } from "./components/LanguageProvider";
 import "./globals.css";
 
@@ -8,13 +8,8 @@ const siteDescription =
   "Social media account management, performance audits and content strategy by Habiba Dapour, an Egyptian Account Manager with 5+ years of experience.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
-  const metadataBase = host ? new URL(`${protocol}://${host}`) : undefined;
-
   return {
-    metadataBase,
+    metadataBase: siteUrl,
     title: { default: siteTitle, template: "%s | Habiba Dapour" },
     description: siteDescription,
     keywords: [
@@ -28,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: siteTitle,
       description: "Focused social media strategy, management and performance analysis.",
       type: "website",
-      url: "/",
+      url: siteUrlString,
       images: ["/og.png"],
     },
     twitter: {
@@ -39,6 +34,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     other: {
       "codex-preview": "development",
+    },
+    alternates: {
+      canonical: "/",
     },
   };
 }
