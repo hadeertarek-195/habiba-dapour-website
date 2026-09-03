@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { siteUrl, siteUrlString } from "./content/siteConfig";
 import { LanguageProvider } from "./components/LanguageProvider";
 import "./globals.css";
@@ -51,5 +52,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     address: { "@type": "PostalAddress", addressLocality: "Marsa Matrouh", addressCountry: "EG" },
     knowsAbout: ["Social media management", "Content strategy", "Performance analysis", "Media buying"],
   };
-  return <html lang="en" suppressHydrationWarning><body><LanguageProvider>{children}</LanguageProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /></body></html>;
+  return <html lang="en" suppressHydrationWarning><body><LanguageProvider>{children}</LanguageProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /><Analytics /></body></html>;
 }
