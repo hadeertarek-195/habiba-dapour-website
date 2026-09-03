@@ -2,14 +2,16 @@
 
 import {
   createContext,
+  startTransition,
   useContext,
   useEffect,
   useMemo,
   useState,
   type ReactNode,
 } from "react";
+import { useRouter } from "next/navigation";
 
-import type { Language } from "../content/siteCopy";
+import type { Language } from "../content/siteContent";
 
 type LanguageContextValue = {
   isArabic: boolean;
@@ -19,18 +21,9 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window === "undefined") {
-      return "en";
-    }
-
-    const savedLanguage = window.localStorage.getItem("habiba-language");
-
-    return savedLanguage === "ar" || savedLanguage === "en"
-      ? savedLanguage
-      : "en";
-  });
+export function LanguageProvider({ children, initialLanguage }: { children: ReactNode; initialLanguage: Language }) {
+  const router = useRouter();
+  const [language, setLanguage] = useState<Language>(initialLanguage);
 
   useEffect(() => {
     const isArabic = language === "ar";
@@ -39,6 +32,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.dir = isArabic ? "rtl" : "ltr";
     document.body.dataset.language = language;
     window.localStorage.setItem("habiba-language", language);
+    document.cookie = `habiba-language=${language}; path=/; max-age=31536000; SameSite=Lax`;
   }, [language]);
 
   const value = useMemo(
@@ -46,10 +40,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       isArabic: language === "ar",
       language,
       toggleLanguage: () => {
-        setLanguage((current) => (current === "en" ? "ar" : "en"));
+        const next = language === "en" ? "ar" : "en";
+        document.cookie = `habiba-language=${next}; path=/; max-age=31536000; SameSite=Lax`;
+        setLanguage(next);
+        startTransition(() => router.refresh());
       },
     }),
-    [language],
+    [language, router],
   );
 
   return (

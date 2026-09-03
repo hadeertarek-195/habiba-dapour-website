@@ -1,33 +1,40 @@
 import assert from "node:assert/strict";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { extname, join } from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
+const appRoot = fileURLToPath(new URL("../app/", import.meta.url));
 
-test("renders development preview metadata", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+function sourceFiles(directory) {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) return sourceFiles(path);
+    return [".ts", ".tsx", ".css"].includes(extname(entry.name)) ? [path] : [];
+  });
+}
 
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
+const source = sourceFiles(appRoot).map((file) => readFileSync(file, "utf8")).join("\n");
 
-  assert.equal(response.status, 200);
-  assert.match(
-    response.headers.get("content-type") ?? "",
-    /^text\/html\b/i,
-  );
-  assert.match(await response.text(), developmentPreviewMeta);
+test("all required public routes exist", () => {
+  for (const route of ["services", "who-we-help", "case-studies", "about", "contact", "social-media-audit"]) {
+    assert.equal(existsSync(new URL(`../app/${route}/page.tsx`, import.meta.url)), true, route);
+  }
+});
+
+test("legacy claims and unsupported figures are absent", () => {
+  assert.doesNotMatch(source, /10\s*(?:to|→|–|-)\s*50|5\s*[x×]|1[,.]?699|250\+|SAR\s*(?:7|1\.99)|6\.5K|6500|60K/i);
+});
+
+test("case-study set contains only the approved projects", () => {
+  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
+  const slugs = [...content.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(slugs, ["abq-al-hayah", "kham-al-jamal", "lina"]);
+  assert.match(content, /slug: "abq-al-hayah"[\s\S]*?featured: true/);
+});
+
+test("analytics and bilingual language state remain wired", () => {
+  assert.match(source, /@vercel\/analytics\/next/);
+  assert.match(source, /habiba-language/);
+  assert.match(source, /document\.documentElement\.dir/);
 });

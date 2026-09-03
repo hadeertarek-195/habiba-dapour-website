@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
-import AuditPageContent from "../components/AuditPageContent";
+import AuditPageV2 from "../components/AuditPageV2";
+import { getPageMetadata } from "../content/pageMetadata";
 
-export const metadata: Metadata = {
-  title: "Social Media Audit",
-  description:
-    "Request a practical social media audit covering content, profile, audience, performance and next-step priorities.",
-  alternates: { canonical: "/social-media-audit" },
-};
+export const generateMetadata = () => getPageMetadata("audit");
 
 export default function AuditPage() {
-  return <AuditPageContent />;
+  return <AuditPageV2 />;
 }

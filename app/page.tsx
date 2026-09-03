@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import HomePageContent from "./components/HomePageContent";
+import { HomePage } from "./components/SitePages";
+import { getPageMetadata } from "./content/pageMetadata";
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const generateMetadata = () => getPageMetadata("home");
 
 export default function Home() {
-  return <HomePageContent />;
+  return <HomePage />;
 }
