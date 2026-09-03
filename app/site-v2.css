@@ -16,3 +16,6 @@
 @media(prefers-reduced-motion:reduce){.v2-button,.v2-info-card,.v2-audience-card{transition:none!important}.v2-button:hover,.v2-info-card:hover,.v2-audience-card:hover{transform:none!important}}
 html,body{overflow-x:clip}.v2-brand,.v2-text-link,.v2-footer nav a,.v2-footer-contact a{min-height:44px;display:inline-flex;align-items:center}
 .v2-portrait,.v2-about-image{position:relative}.v2-portrait img,.v2-about-image img{object-fit:cover;object-position:center top}
+.v2-case-card{grid-template-columns:280px minmax(0,1fr);min-height:280px}.v2-case-card.featured{grid-template-columns:400px minmax(0,1fr);min-height:400px}.v2-case-visual{aspect-ratio:1/1;min-height:0}
+@media(max-width:800px){.v2-case-grid{grid-template-columns:1fr}.v2-case-card,.v2-case-card.featured{grid-column:auto;grid-template-columns:280px minmax(0,1fr);min-height:280px}}
+@media(max-width:560px){.v2-case-card,.v2-case-card.featured{grid-template-columns:1fr;min-height:0}.v2-case-visual{width:100%;min-height:0;aspect-ratio:1/1}}
