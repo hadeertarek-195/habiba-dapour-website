@@ -173,9 +173,9 @@ export const audiences = {
 } as const;
 
 export const caseStudies = [
-  { slug: "abq-al-hayah", name: { en: "Abq Al Hayah", ar: "عبق الحياة" }, category: { en: "Social media strategy", ar: "استراتيجية السوشيال ميديا" }, coverImage: null, logo: null, summary: null, challenge: null, strategy: null, execution: null, results: null, gallery: [], videos: [], testimonial: null, serviceTags: ["Strategy", "Content", "Management"], featured: true, published: false },
-  { slug: "kham-al-jamal", name: { en: "Kham Al Jamal", ar: "خام الجمال" }, category: { en: "Brand content", ar: "محتوى البراند" }, coverImage: null, logo: null, summary: null, challenge: null, strategy: null, execution: null, results: null, gallery: [], videos: [], testimonial: null, serviceTags: ["Content", "Management"], featured: false, published: false },
-  { slug: "lina", name: { en: "Lina", ar: "لينا" }, category: { en: "Personal brand", ar: "براند شخصي" }, coverImage: null, logo: null, summary: null, challenge: null, strategy: null, execution: null, results: null, gallery: [], videos: [], testimonial: null, serviceTags: ["Strategy", "Content"], featured: false, published: false },
+  { slug: "abq-al-hayah", name: { en: "Abq Al Hayah", ar: "عبق الحياة" }, category: { en: "Social media strategy", ar: "استراتيجية السوشيال ميديا" }, coverImage: "https://i.ibb.co/h1rDjJ2m/Untitled-1-01.webp", logo: null, summary: null, challenge: null, strategy: null, execution: null, results: null, gallery: [], videos: [], testimonial: null, serviceTags: ["Strategy", "Content", "Management"], featured: true, published: false },
+  { slug: "kham-al-jamal", name: { en: "Kham Al Jamal", ar: "خام الجمال" }, category: { en: "Brand content", ar: "محتوى البراند" }, coverImage: "https://i.ibb.co/gZtm5pNV/Untitled-1-02.webp", logo: null, summary: null, challenge: null, strategy: null, execution: null, results: null, gallery: [], videos: [], testimonial: null, serviceTags: ["Content", "Management"], featured: false, published: false },
+  { slug: "lina", name: { en: "Lina", ar: "لينا" }, category: { en: "Personal brand", ar: "براند شخصي" }, coverImage: "https://i.ibb.co/hFq0ZY8w/Untitled-1-03.webp", logo: null, summary: null, challenge: null, strategy: null, execution: null, results: null, gallery: [], videos: [], testimonial: null, serviceTags: ["Strategy", "Content"], featured: false, published: false },
 ] as const;
 
 export const auditAreas = [
@@ -192,8 +192,8 @@ export const auditAreas = [
 ] as const;
 
 export const processSteps = {
-  en: [["01", "Understand", "We clarify the business, audience, objectives, and current challenge."], ["02", "Strategize", "We define the direction, priorities, channels, and role of content."], ["03", "Create", "We turn the strategy into purposeful content and practical execution."], ["04", "Measure", "We review the indicators connected to the agreed business objective."], ["05", "Optimize", "We use what we learn to refine the next decisions and actions."]],
-  ar: [["01", "نفهم", "بنحدد طبيعة البيزنس والجمهور والأهداف والتحدي الحالي."], ["02", "نخطط", "بنحدد الاتجاه والأولويات والقنوات ودور المحتوى."], ["03", "ننفذ", "بنحوّل الاستراتيجية إلى محتوى هادف وتنفيذ عملي."], ["04", "نقيس", "بنراجع المؤشرات المرتبطة بهدف البيزنس المتفق عليه."], ["05", "نحسن", "بنستخدم اللي اتعلمناه علشان نطوّر القرارات والخطوات الجاية."]],
+  en: [["Understand", "We clarify the business, audience, objectives, and current challenge."], ["Strategize", "We define the direction, priorities, channels, and role of content."], ["Create", "We turn the strategy into purposeful content and practical execution."], ["Measure", "We review the indicators connected to the agreed business objective."], ["Optimize", "We use what we learn to refine the next decisions and actions."]],
+  ar: [["نفهم", "بنحدد طبيعة البيزنس والجمهور والأهداف والتحدي الحالي."], ["نخطط", "بنحدد الاتجاه والأولويات والقنوات ودور المحتوى."], ["ننفذ", "بنحوّل الاستراتيجية إلى محتوى هادف وتنفيذ عملي."], ["نقيس", "بنراجع المؤشرات المرتبطة بهدف البيزنس المتفق عليه."], ["نحسن", "بنستخدم اللي اتعلمناه علشان نطوّر القرارات والخطوات الجاية."]],
 } as const;
 
 const faqItems = {

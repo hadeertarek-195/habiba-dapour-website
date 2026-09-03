@@ -29,8 +29,8 @@ function Process() {
       <div className="v2-shell">
         <div className="v2-section-heading"><h2>{text.processTitle}</h2><p>{text.processIntro}</p></div>
         <div className="v2-process-grid">
-          {processSteps[language].map(([number, title, details]) => (
-            <article key={number}><span>{number}</span><h3>{title}</h3><p>{details}</p></article>
+          {processSteps[language].map(([title, details]) => (
+            <article key={title}><h3>{title}</h3><p>{details}</p></article>
           ))}
         </div>
       </div>
@@ -45,7 +45,14 @@ function CaseGrid({ compact = false }: { compact?: boolean }) {
     <div className={`v2-case-grid ${compact ? "compact" : ""}`}>
       {caseStudies.map((item) => (
         <article className={`v2-case-card ${item.featured ? "featured" : ""}`} key={item.slug}>
-          <div className="v2-case-visual" aria-hidden="true"><span>{item.name[language].slice(0, 1)}</span></div>
+          <div className="v2-case-visual">
+            <Image
+              alt={language === "ar" ? `صورة حساب ${item.name.ar}` : `${item.name.en} account image`}
+              fill
+              sizes={item.featured ? "(max-width: 560px) calc(100vw - 24px), (max-width: 1200px) 40vw, 430px" : "(max-width: 560px) calc(100vw - 24px), 150px"}
+              src={item.coverImage}
+            />
+          </div>
           <div className="v2-case-copy">
             <div className="v2-case-meta"><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
             <h3>{item.name[language]}</h3>
@@ -108,13 +115,12 @@ export function HomePage() {
 
         <section className="v2-section v2-problem">
           <div className="v2-shell v2-problem-grid">
-            <div><p className="v2-kicker">01 · Business first</p><h2>{text.home.problemTitle}</h2></div>
+            <div><p className="v2-kicker">{language === "ar" ? "البيزنس أولًا" : "Business first"}</p><h2>{text.home.problemTitle}</h2></div>
             <div><ul>{text.home.problems.map((problem) => <li key={problem}>{problem}</li>)}</ul><p className="v2-callout">{text.home.problemClose}</p></div>
           </div>
         </section>
 
         <section className="v2-section v2-shell v2-about-preview">
-          <div className="v2-number">02</div>
           <div><h2>{text.home.aboutTitle}</h2><p>{text.home.aboutCopy}</p><Link className="v2-text-link" href="/about">{text.home.aboutCta}<Arrow /></Link></div>
         </section>
 
@@ -122,8 +128,8 @@ export function HomePage() {
           <div className="v2-shell">
             <div className="v2-section-heading"><h2>{text.home.servicesTitle}</h2><Link className="v2-text-link" href="/services">{text.common.learn}<Arrow /></Link></div>
             <div className="v2-card-grid v2-services-preview">
-              {services[language].map((service, index) => (
-                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><span>0{index + 1}</span><h3>{service.title}</h3><p>{service.preview}</p><Arrow /></Link>
+              {services[language].map((service) => (
+                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><h3>{service.title}</h3><p>{service.preview}</p><Arrow /></Link>
               ))}
             </div>
           </div>
@@ -167,9 +173,9 @@ export function ServicesPage() {
     <SiteFrame><main>
       <PageHero eyebrow={text.services.eyebrow} title={text.services.title} intro={text.services.intro} />
       <section className="v2-section v2-shell v2-service-list">
-        {services[language].map((service, index) => (
+        {services[language].map((service) => (
           <article id={service.id} key={service.id}>
-            <div className="v2-service-head"><span>0{index + 1}</span><h2>{service.title}</h2><p>{service.preview}</p></div>
+            <div className="v2-service-head"><h2>{service.title}</h2><p>{service.preview}</p></div>
             <div className="v2-service-details">
               <div><strong>{text.services.labels[0]}</strong><p>{service.problem}</p></div>
               <div><strong>{text.services.labels[1]}</strong><p>{service.fit}</p></div>
@@ -193,9 +199,9 @@ export function WhoWeHelpPage() {
     <SiteFrame><main>
       <PageHero eyebrow={text.help.eyebrow} title={text.help.title} intro={text.help.intro} />
       <section className="v2-section v2-shell v2-audience-list">
-        {audiences[language].map((item, index) => (
+        {audiences[language].map((item) => (
           <article key={item.title}>
-            <span className="v2-index">0{index + 1}</span><h2>{item.title}</h2><p className="v2-audience-lead">{item.copy}</p>
+            <h2>{item.title}</h2><p className="v2-audience-lead">{item.copy}</p>
             <div className="v2-audience-details"><div><strong>{text.help.labels[0]}</strong><p>{item.challenges}</p></div><div><strong>{text.help.labels[1]}</strong><p>{item.relevant}</p></div><div><strong>{text.help.labels[2]}</strong><p>{item.improve}</p></div></div>
             <Link className="v2-button v2-button-ghost" href="/contact">{text.book}<Arrow /></Link>
           </article>
@@ -220,7 +226,7 @@ export function AboutPage() {
         <div><p className="v2-kicker">{text.about.eyebrow}</p><h1>{text.about.title}</h1><p className="v2-lead">{text.about.body}</p></div>
         <div className="v2-about-image"><Image alt={text.about.imageAlt} fill sizes="(max-width: 800px) calc(100vw - 32px), 420px" src={profileImageUrl} /></div>
       </section>
-      <section className="v2-section v2-tint"><div className="v2-shell"><div className="v2-section-heading"><h2>{text.about.valuesTitle}</h2></div><div className="v2-values-grid">{text.about.values.map(([title, body], index) => <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
+      <section className="v2-section v2-tint"><div className="v2-shell"><div className="v2-section-heading"><h2>{text.about.valuesTitle}</h2></div><div className="v2-values-grid">{text.about.values.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
       <Process />
       <FinalCta title={text.home.finalTitle} body={text.home.finalCopy} />
     </main></SiteFrame>

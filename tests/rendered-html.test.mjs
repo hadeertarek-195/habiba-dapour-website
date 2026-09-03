@@ -31,6 +31,16 @@ test("case-study set contains only the approved projects", () => {
   const slugs = [...content.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(slugs, ["abq-al-hayah", "kham-al-jamal", "lina"]);
   assert.match(content, /slug: "abq-al-hayah"[\s\S]*?featured: true/);
+  for (const image of ["Untitled-1-01.webp", "Untitled-1-02.webp", "Untitled-1-03.webp"]) {
+    assert.match(content, new RegExp(image.replace(".", "\\.")));
+  }
+});
+
+test("decorative section numbering is absent", () => {
+  const pageComponents = ["SitePages.tsx", "AuditPageV2.tsx"]
+    .map((file) => readFileSync(new URL(`../app/components/${file}`, import.meta.url), "utf8"))
+    .join("\n");
+  assert.doesNotMatch(pageComponents, /v2-number|v2-index|>0[1-5]</);
 });
 
 test("analytics and bilingual language state remain wired", () => {
