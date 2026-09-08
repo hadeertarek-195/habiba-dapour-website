@@ -43,23 +43,30 @@ function CaseGrid({ compact = false }: { compact?: boolean }) {
   const text = copy[language];
   return (
     <div className={`v2-case-grid ${compact ? "compact" : ""}`}>
-      {caseStudies.map((item) => (
-        <article className={`v2-case-card ${item.featured ? "featured" : ""}`} key={item.slug}>
+      {caseStudies.map((item) => {
+        const className = `v2-case-card ${item.featured ? "featured" : ""} ${item.published ? "published" : ""}`;
+        const body = <>
           <div className="v2-case-visual">
             <Image
-              alt={language === "ar" ? `صورة حساب ${item.name.ar}` : `${item.name.en} account image`}
+              alt={language === "ar" ? `صورة مشروع ${item.name.ar}` : `${item.name.en} project image`}
               fill
-              sizes={item.featured ? "(max-width: 560px) calc(100vw - 24px), (max-width: 1200px) 40vw, 430px" : "(max-width: 560px) calc(100vw - 24px), 150px"}
+              priority={item.featured && item.published}
+              sizes={item.featured ? "(max-width: 560px) calc(100vw - 24px), (max-width: 800px) 280px, 400px" : "(max-width: 560px) calc(100vw - 24px), 280px"}
               src={item.coverImage}
             />
           </div>
           <div className="v2-case-copy">
             <div className="v2-case-meta"><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
-            <h3>{item.name[language]}</h3>
-            <p>{text.common.caseSoon}</p>
+            <h3>{item.published ? item.title[language] : item.name[language]}</h3>
+            <p>{item.published ? item.summary[language] : text.common.caseSoon}</p>
+            {item.published ? <span className="v2-case-cta">{item.cta[language]}<Arrow /></span> : null}
           </div>
-        </article>
-      ))}
+        </>;
+
+        return item.published
+          ? <Link aria-label={item.cta[language]} className={className} href={`/case-studies/${item.slug}`} key={item.slug}>{body}</Link>
+          : <article className={className} key={item.slug}>{body}</article>;
+      })}
     </div>
   );
 }

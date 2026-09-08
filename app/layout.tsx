@@ -6,9 +6,9 @@ import { LanguageProvider } from "./components/LanguageProvider";
 import "./globals.css";
 import "./site-v2.css";
 
-const siteTitle = "Habiba Dapour | Social Media Account Manager";
+const siteTitle = "Habiba Dapour | Senior Social Media Specialist & Growth Strategist";
 const siteDescription =
-  "Strategic social media management, content strategy, account audits, and paid media for business growth by Habiba Dapour.";
+  "Content strategy, social media management, account audits, and paid media connected to measurable business impact by Habiba Dapour.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -56,10 +56,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Habiba Dapour",
-    jobTitle: "Social Media Account Manager",
+    jobTitle: "Senior Social Media Specialist & Growth Strategist",
     email: "mailto:habiba.dapour@gmail.com",
     address: { "@type": "PostalAddress", addressLocality: "Marsa Matrouh", addressCountry: "EG" },
     knowsAbout: ["Social media management", "Content strategy", "Performance analysis", "Media buying"],
   };
-  return <html dir={initialLanguage === "ar" ? "rtl" : "ltr"} lang={initialLanguage}><body><LanguageProvider initialLanguage={initialLanguage}>{children}</LanguageProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /><Analytics /></body></html>;
+  return <html data-scroll-behavior="smooth" dir={initialLanguage === "ar" ? "rtl" : "ltr"} lang={initialLanguage}><body><LanguageProvider initialLanguage={initialLanguage}>{children}</LanguageProvider><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} /><Analytics /></body></html>;
 }

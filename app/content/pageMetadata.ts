@@ -16,8 +16,8 @@ const pages = {
   },
   help: {
     path: "/who-we-help",
-    en: ["Who We Help", "Social media support for growing businesses, e-commerce brands, personal brands, experts, and local businesses."],
-    ar: ["مين نقدر نساعد", "حلول سوشيال ميديا للبيزنس المتنامي والتجارة الإلكترونية والبراندات الشخصية والخبراء والأنشطة المحلية."],
+    en: ["Who I Help", "Strategic social media support for growing businesses, e-commerce brands, personal brands, experts, and local businesses."],
+    ar: ["مين أقدر أساعد", "حلول سوشيال ميديا استراتيجية للبيزنس المتنامي والتجارة الإلكترونية والبراندات الشخصية والخبراء والأنشطة المحلية."],
   },
   cases: {
     path: "/case-studies",
@@ -32,7 +32,7 @@ const pages = {
   contact: {
     path: "/contact",
     en: ["Contact & Consultation", "Share your business challenge and request a social media consultation with Habiba Dapour."],
-    ar: ["تواصل واحجز استشارتك", "شاركنا تحدي البيزنس واطلب استشارة سوشيال ميديا مع Habiba Dapour."],
+    ar: ["تواصل واحجز استشارتك", "احكيلي عن تحدي البيزنس واطلب استشارة سوشيال ميديا مع Habiba Dapour."],
   },
   audit: {
     path: "/social-media-audit",

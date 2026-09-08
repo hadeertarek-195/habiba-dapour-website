@@ -17,7 +17,7 @@ export function Header() {
       <div className="v2-shell v2-nav">
         <Link className="v2-brand" href="/" aria-label="Habiba Dapour home">
           <span className="v2-brand-image"><Image alt="" height={44} src={profileImageUrl} width={44} /></span>
-          <span>Habiba Dapour<small>Social Media Account Manager</small></span>
+          <span>Habiba Dapour<small>Social Media & Growth Strategist</small></span>
         </Link>
 
         <nav className="v2-desktop-links" aria-label="Primary navigation">
