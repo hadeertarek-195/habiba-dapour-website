@@ -47,6 +47,16 @@ test("ABQ AL HAYAT case study has secure external linking and structured metadat
   assert.match(source, /BreadcrumbList/);
 });
 
+test("ABQ AL HAYAT case study embeds the approved Shorts for direct preview", () => {
+  const component = readFileSync(new URL("../app/components/AbqCaseStudyPage.tsx", import.meta.url), "utf8");
+  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
+  assert.match(content, /dXSrWXwzc3M/);
+  assert.match(content, /4Dh3DvfOGNU/);
+  assert.match(component, /youtube-nocookie\.com\/embed/);
+  assert.match(component, /allowFullScreen/);
+  assert.match(component, /loading="lazy"/);
+});
+
 test("customer-facing copy uses first-person singular voice", () => {
   const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
   const visibleStrings = [...content.matchAll(/"([^"\n]*)"/g)]

@@ -28,9 +28,34 @@ function WebsiteLink() {
   );
 }
 
-function MediaGallery() {
-  if (abqCaseStudy.media.length === 0) return null;
-  return null;
+function MediaGallery({ media }: { media: ReadonlyArray<{ youtubeId: string; title: { en: string; ar: string } }> }) {
+  const { language } = useLanguage();
+  const text = abqCaseStudy[language];
+  if (media.length === 0) return null;
+
+  return (
+    <section className="v2-section v2-case-media">
+      <div className="v2-shell">
+        <div className="v2-section-heading">
+          <div><p className="v2-kicker">ABQ AL HAYAT</p><h2>{text.mediaTitle}</h2><p>{text.mediaIntro}</p></div>
+        </div>
+        <div className="v2-video-grid">
+          {media.map((video) => (
+            <div className="v2-video-frame" key={video.youtubeId}>
+              <iframe
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0`}
+                title={video.title[language]}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default function AbqCaseStudyPage() {
@@ -112,7 +137,7 @@ export default function AbqCaseStudyPage() {
           <blockquote>{text.takeaway}</blockquote>
         </section>
 
-        <MediaGallery />
+        <MediaGallery media={abqCaseStudy.media} />
 
         <section className="v2-final-cta v2-shell v2-case-final">
           <p className="v2-kicker v2-kicker-light">Habiba Dapour</p>
