@@ -17,7 +17,7 @@ function sourceFiles(directory) {
 const source = sourceFiles(appRoot).map((file) => readFileSync(file, "utf8")).join("\n");
 
 test("all required public routes exist", () => {
-  for (const route of ["services", "who-we-help", "case-studies", "case-studies/abq-al-hayat", "case-studies/lina", "about", "contact", "social-media-audit"]) {
+  for (const route of ["services", "who-we-help", "case-studies", "case-studies/abq-al-hayat", "case-studies/kham-al-jamal", "case-studies/lina", "about", "contact", "social-media-audit"]) {
     assert.equal(existsSync(new URL(`../app/${route}/page.tsx`, import.meta.url)), true, route);
   }
 });
@@ -31,6 +31,18 @@ test("Lina case study includes bilingual content, media, store link, and structu
   assert.match(content, /lina-video-3\.mp4/);
   assert.match(content, /الصفحة الأولى من نتائج بحث Google/);
   assert.match(component, /playsInline/);
+  assert.match(component, /rel="noopener noreferrer"/);
+  assert.match(page, /CreativeWork/);
+  assert.match(page, /BreadcrumbList/);
+});
+
+test("Kham Al Jamal case study is published with bilingual strategy content and metadata", () => {
+  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
+  const component = readFileSync(new URL("../app/components/KhamCaseStudyPage.tsx", import.meta.url), "utf8");
+  const page = readFileSync(new URL("../app/case-studies/kham-al-jamal/page.tsx", import.meta.url), "utf8");
+  assert.match(content, /https:\/\/kham-aljamal\.com\//);
+  assert.match(content, /خام الجمال: نمو عضوي تقوده شخصية UGC موثوقة/);
+  assert.match(content, /slug: "kham-al-jamal"[\s\S]*?published: true/);
   assert.match(component, /rel="noopener noreferrer"/);
   assert.match(page, /CreativeWork/);
   assert.match(page, /BreadcrumbList/);
