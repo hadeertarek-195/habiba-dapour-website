@@ -17,9 +17,22 @@ function sourceFiles(directory) {
 const source = sourceFiles(appRoot).map((file) => readFileSync(file, "utf8")).join("\n");
 
 test("all required public routes exist", () => {
-  for (const route of ["services", "who-we-help", "case-studies", "case-studies/abq-al-hayat", "about", "contact", "social-media-audit"]) {
+  for (const route of ["services", "who-we-help", "case-studies", "case-studies/abq-al-hayat", "case-studies/lina", "about", "contact", "social-media-audit"]) {
     assert.equal(existsSync(new URL(`../app/${route}/page.tsx`, import.meta.url)), true, route);
   }
+});
+
+test("Lina case study includes bilingual content, media, store link, and structured metadata", () => {
+  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
+  const component = readFileSync(new URL("../app/components/LinaCaseStudyPage.tsx", import.meta.url), "utf8");
+  const page = readFileSync(new URL("../app/case-studies/lina/page.tsx", import.meta.url), "utf8");
+  assert.match(content, /https:\/\/linnaaa\.com\//);
+  assert.match(content, /lina-video-3\.mp4/);
+  assert.match(content, /الصفحة الأولى من نتائج بحث Google/);
+  assert.match(component, /playsInline/);
+  assert.match(component, /rel="noopener noreferrer"/);
+  assert.match(page, /CreativeWork/);
+  assert.match(page, /BreadcrumbList/);
 });
 
 test("legacy claims and unsupported figures are absent", () => {
@@ -34,7 +47,7 @@ test("case-study set contains only the approved projects", () => {
   const slugs = [...content.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(slugs, ["abq-al-hayat", "kham-al-jamal", "lina"]);
   assert.match(content, /slug: "abq-al-hayat"[\s\S]*?featured: true[\s\S]*?published: true/);
-  for (const image of ["Untitled-1-01.webp", "Untitled-1-02.webp", "Untitled-1-03.webp"]) {
+  for (const image of ["Untitled-1-01.webp", "Untitled-1-02.webp", "lina-hero.jpeg"]) {
     assert.match(content, new RegExp(image.replace(".", "\\.")));
   }
 });
