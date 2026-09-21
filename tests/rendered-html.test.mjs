@@ -27,6 +27,7 @@ test("Lina case study includes bilingual content, media, store link, and structu
   const component = readFileSync(new URL("../app/components/LinaCaseStudyPage.tsx", import.meta.url), "utf8");
   const page = readFileSync(new URL("../app/case-studies/lina/page.tsx", import.meta.url), "utf8");
   assert.match(content, /https:\/\/linnaaa\.com\//);
+  assert.match(content, /لينا: بناء براند أزياء سعودي/);
   assert.match(content, /lina-video-3\.mp4/);
   assert.match(content, /الصفحة الأولى من نتائج بحث Google/);
   assert.match(component, /playsInline/);
@@ -47,7 +48,7 @@ test("case-study set contains only the approved projects", () => {
   const slugs = [...content.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(slugs, ["abq-al-hayat", "kham-al-jamal", "lina"]);
   assert.match(content, /slug: "abq-al-hayat"[\s\S]*?featured: true[\s\S]*?published: true/);
-  for (const image of ["Untitled-1-01.webp", "Untitled-1-02.webp", "lina-hero.jpeg"]) {
+  for (const image of ["Untitled-1-01.webp", "Untitled-1-02.webp", "Untitled-1-03.webp"]) {
     assert.match(content, new RegExp(image.replace(".", "\\.")));
   }
 });

@@ -11,9 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
   const language: Language = cookieStore.get("habiba-language")?.value === "ar" ? "ar" : "en";
   const isArabic = language === "ar";
-  const title = isArabic ? "دراسة حالة لين | بناء براند أزياء سعودي" : "Lina Case Study | Saudi Fashion Brand Storytelling";
+  const title = isArabic ? "دراسة حالة لينا | بناء براند أزياء سعودي" : "Lina Case Study | Saudi Fashion Brand Storytelling";
   const description = isArabic
-    ? "دراسة حالة توضح بناء هوية لين وقصة البراند ومحتوى الذكاء الاصطناعي وتحسين المتجر الإلكتروني وSEO."
+    ? "دراسة حالة توضح بناء هوية لينا وقصة البراند ومحتوى الذكاء الاصطناعي وتحسين المتجر الإلكتروني وSEO."
     : "A case study covering Lina’s Saudi brand identity, audience psychology, AI content, storytelling, e-commerce optimization, and SEO.";
 
   return {

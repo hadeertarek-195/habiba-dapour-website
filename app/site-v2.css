@@ -37,3 +37,7 @@ html,body{overflow-x:clip}.v2-brand,.v2-text-link,.v2-footer nav a,.v2-footer-co
 
 .v2-lina-video-grid{max-width:900px;grid-template-columns:repeat(2,minmax(0,1fr));margin-inline:auto}.v2-lina-video-grid video{aspect-ratio:auto}.v2-lina-video-grid video.landscape{grid-column:1/-1;aspect-ratio:16/9}.v2-lina-video-grid video.portrait{width:min(100%,360px);aspect-ratio:9/16;justify-self:center}.v2-lina-video-grid video.portrait:last-child{grid-column:auto;width:min(100%,360px)}
 @media(max-width:560px){.v2-lina-video-grid{grid-template-columns:1fr}.v2-lina-video-grid video.landscape{grid-column:auto;width:100%;max-width:560px}.v2-lina-video-grid video.portrait,.v2-lina-video-grid video.portrait:last-child{width:100%;max-width:360px}}
+
+.v2-case-grid{grid-template-columns:1fr}.v2-case-card,.v2-case-card.featured{grid-column:auto;grid-template-columns:400px minmax(0,1fr);min-height:400px}
+@media(max-width:800px){.v2-case-card,.v2-case-card.featured{grid-template-columns:280px minmax(0,1fr);min-height:280px}}
+@media(max-width:560px){.v2-case-card,.v2-case-card.featured{grid-template-columns:1fr;min-height:0}}
