@@ -371,6 +371,10 @@ export const linaCaseStudy = {
 export const khamCaseStudy = {
   website: "https://kham-aljamal.com/",
   coverImage: "https://i.ibb.co/gZtm5pNV/Untitled-1-02.webp",
+  nationalDayCampaign: [
+    { src: "/case-studies/kham-al-jamal/saudi-national-day-1.jpeg", alt: { en: "Kham Al Jamal Grow Hair characters in a Saudi heritage setting for the Saudi National Day campaign", ar: "شخصيات جرو هير من خام الجمال في أجواء تراثية ضمن حملة اليوم الوطني السعودي" } },
+    { src: "/case-studies/kham-al-jamal/saudi-national-day-2.jpeg", alt: { en: "Kham Al Jamal Grow Hair family celebrating Saudi National Day 96", ar: "عائلة جرو هير من خام الجمال تحتفل باليوم الوطني السعودي 96" } },
+  ],
   tags: ["Organic UGC", "Persona Building", "TikTok Strategy", "Scriptwriting", "Community Management", "Conversion"],
   en: {
     breadcrumb: "Case Studies",
@@ -400,6 +404,9 @@ export const khamCaseStudy = {
       { title: "In-House Production", copy: "The existing office environment and internal talent kept production efficient while strengthening the sense of authenticity." },
       { title: "Community-Led Iteration", copy: "I turned recurring questions, comments, and direct-message concerns into new content, allowing the audience to influence the next publishing decisions." },
     ],
+    campaignEyebrow: "Seasonal Campaign",
+    campaignTitle: "Saudi National Day Campaign",
+    campaignIntro: "A character-led visual campaign that placed Grow Hair inside a recognizable Saudi celebration, blending product storytelling with heritage, warmth, and a family-centered narrative.",
     impactTitle: "Results & Impact",
     impactIntro: "The strongest outcomes were visible in audience behavior and the role content began playing across discovery, trust, and purchase.",
     results: [
@@ -442,6 +449,9 @@ export const khamCaseStudy = {
       { title: "إنتاج من داخل الشركة", copy: "استخدام بيئة العمل والمواهب الداخلية حافظ على كفاءة الإنتاج وعزز الشعور بالمصداقية." },
       { title: "تطوير يقوده الجمهور", copy: "حولت الأسئلة المتكررة والتعليقات ومشكلات الرسائل الخاصة إلى محتوى جديد، ليشارك الجمهور فعليًا في توجيه قرارات النشر التالية." },
     ],
+    campaignEyebrow: "حملة موسمية",
+    campaignTitle: "حملة اليوم الوطني السعودي",
+    campaignIntro: "حملة بصرية تقودها شخصيات جرو هير وتضع المنتج داخل احتفال سعودي مألوف، مع دمج القصة بالتراث والدفء وروح العائلة.",
     impactTitle: "النتائج والأثر",
     impactIntro: "ظهرت أقوى النتائج في سلوك الجمهور وفي الدور الذي بدأ المحتوى يلعبه من الاكتشاف وحتى الثقة والشراء.",
     results: [

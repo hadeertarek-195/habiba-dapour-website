@@ -84,6 +84,17 @@ export default function KhamCaseStudyPage() {
           </div>
         </section>
 
+        <section className="v2-section v2-kham-campaign">
+          <div className="v2-shell">
+            <div className="v2-section-heading"><div><p className="v2-kicker">{text.campaignEyebrow}</p><h2>{text.campaignTitle}</h2><p>{text.campaignIntro}</p></div></div>
+            <div className="v2-kham-campaign-grid">
+              {khamCaseStudy.nationalDayCampaign.map((image) => (
+                <figure key={image.src}><Image alt={image.alt[language]} fill sizes="(max-width: 800px) calc(100vw - 32px), 50vw" src={image.src} /></figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="v2-section v2-kham-impact">
           <div className="v2-shell">
             <div className="v2-section-heading"><div><h2>{text.impactTitle}</h2><p>{text.impactIntro}</p></div></div>

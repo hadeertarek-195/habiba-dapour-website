@@ -42,6 +42,9 @@ test("Kham Al Jamal case study is published with bilingual strategy content and 
   const page = readFileSync(new URL("../app/case-studies/kham-al-jamal/page.tsx", import.meta.url), "utf8");
   assert.match(content, /https:\/\/kham-aljamal\.com\//);
   assert.match(content, /خام الجمال: نمو عضوي تقوده شخصية UGC موثوقة/);
+  assert.match(content, /saudi-national-day-1\.jpeg/);
+  assert.match(content, /saudi-national-day-2\.jpeg/);
+  assert.match(content, /حملة اليوم الوطني السعودي/);
   assert.match(content, /slug: "kham-al-jamal"[\s\S]*?published: true/);
   assert.match(component, /rel="noopener noreferrer"/);
   assert.match(page, /CreativeWork/);
