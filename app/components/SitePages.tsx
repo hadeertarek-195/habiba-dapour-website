@@ -11,6 +11,11 @@ function Arrow() {
   return <span className="v2-arrow" aria-hidden="true">↗</span>;
 }
 
+function CardIcon({ index }: { index: number }) {
+  const icons = ["✦", "◇", "○", "＋"];
+  return <span aria-hidden="true" className="v2-card-icon">{icons[index % icons.length]}</span>;
+}
+
 function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: string; intro: string }) {
   return (
     <section className="v2-page-hero v2-shell">
@@ -43,20 +48,11 @@ function CaseGrid({ compact = false }: { compact?: boolean }) {
   const text = copy[language];
   return (
     <div className={`v2-case-grid ${compact ? "compact" : ""}`}>
-      {caseStudies.map((item) => {
+      {caseStudies.map((item, index) => {
         const className = `v2-case-card ${item.featured ? "featured" : ""} ${item.published ? "published" : ""}`;
         const body = <>
-          <div className="v2-case-visual">
-            <Image
-              alt={language === "ar" ? `صورة مشروع ${item.name.ar}` : `${item.name.en} project image`}
-              fill
-              priority={item.featured && item.published}
-              sizes={item.featured ? "(max-width: 560px) calc(100vw - 24px), (max-width: 800px) 280px, 400px" : "(max-width: 560px) calc(100vw - 24px), 280px"}
-              src={item.coverImage}
-            />
-          </div>
           <div className="v2-case-copy">
-            <div className="v2-case-meta"><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
+            <div className="v2-case-meta"><CardIcon index={index} /><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
             <h3>{item.published ? item.title[language] : item.name[language]}</h3>
             <p>{item.published ? item.summary[language] : text.common.caseSoon}</p>
             {item.published ? <span className="v2-case-cta">{item.cta[language]}<Arrow /></span> : null}
@@ -135,8 +131,8 @@ export function HomePage() {
           <div className="v2-shell">
             <div className="v2-section-heading"><h2>{text.home.servicesTitle}</h2><Link className="v2-text-link" href="/services">{text.common.learn}<Arrow /></Link></div>
             <div className="v2-card-grid v2-services-preview">
-              {services[language].map((service) => (
-                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><h3>{service.title}</h3><p>{service.preview}</p><Arrow /></Link>
+              {services[language].map((service, index) => (
+                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><CardIcon index={index} /><h3>{service.title}</h3><p>{service.preview}</p><Arrow /></Link>
               ))}
             </div>
           </div>
@@ -145,7 +141,7 @@ export function HomePage() {
         <section className="v2-section v2-shell">
           <div className="v2-section-heading"><h2>{text.home.helpTitle}</h2><Link className="v2-text-link" href="/who-we-help">{text.common.learn}<Arrow /></Link></div>
           <div className="v2-card-grid v2-audience-preview">
-            {audiences[language].map((item) => <Link className="v2-audience-card" href="/who-we-help" key={item.title}><h3>{item.title}</h3><p>{item.copy}</p><Arrow /></Link>)}
+            {audiences[language].map((item, index) => <Link className="v2-audience-card" href="/who-we-help" key={item.title}><CardIcon index={index} /><h3>{item.title}</h3><p>{item.copy}</p><Arrow /></Link>)}
           </div>
         </section>
 
@@ -180,9 +176,9 @@ export function ServicesPage() {
     <SiteFrame><main>
       <PageHero eyebrow={text.services.eyebrow} title={text.services.title} intro={text.services.intro} />
       <section className="v2-section v2-shell v2-service-list">
-        {services[language].map((service) => (
+        {services[language].map((service, index) => (
           <article id={service.id} key={service.id}>
-            <div className="v2-service-head"><h2>{service.title}</h2><p>{service.preview}</p></div>
+            <div className="v2-service-head"><CardIcon index={index} /><h2>{service.title}</h2><p>{service.preview}</p></div>
             <div className="v2-service-details">
               <div><strong>{text.services.labels[0]}</strong><p>{service.problem}</p></div>
               <div><strong>{text.services.labels[1]}</strong><p>{service.fit}</p></div>
@@ -206,9 +202,9 @@ export function WhoWeHelpPage() {
     <SiteFrame><main>
       <PageHero eyebrow={text.help.eyebrow} title={text.help.title} intro={text.help.intro} />
       <section className="v2-section v2-shell v2-audience-list">
-        {audiences[language].map((item) => (
+        {audiences[language].map((item, index) => (
           <article key={item.title}>
-            <h2>{item.title}</h2><p className="v2-audience-lead">{item.copy}</p>
+            <CardIcon index={index} /><h2>{item.title}</h2><p className="v2-audience-lead">{item.copy}</p>
             <div className="v2-audience-details"><div><strong>{text.help.labels[0]}</strong><p>{item.challenges}</p></div><div><strong>{text.help.labels[1]}</strong><p>{item.relevant}</p></div><div><strong>{text.help.labels[2]}</strong><p>{item.improve}</p></div></div>
             <Link className="v2-button v2-button-ghost" href="/contact">{text.book}<Arrow /></Link>
           </article>
@@ -230,8 +226,8 @@ export function AboutPage() {
   return (
     <SiteFrame><main>
       <section className="v2-page-hero v2-shell v2-about-hero">
-        <div><p className="v2-kicker">{text.about.eyebrow}</p><h1>{text.about.title}</h1><p className="v2-lead">{text.about.body}</p></div>
-        <div className="v2-about-image"><Image alt={text.about.imageAlt} fill sizes="(max-width: 800px) calc(100vw - 32px), 420px" src={profileImageUrl} /></div>
+        <div className="v2-about-heading"><p className="v2-kicker">{text.about.eyebrow}</p><h1>{text.about.title}</h1></div>
+        <div className="v2-about-statement"><span aria-hidden="true">✦</span><p className="v2-lead">{text.about.body}</p></div>
       </section>
       <section className="v2-section v2-tint"><div className="v2-shell"><div className="v2-section-heading"><h2>{text.about.valuesTitle}</h2></div><div className="v2-values-grid">{text.about.values.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
       <Process />

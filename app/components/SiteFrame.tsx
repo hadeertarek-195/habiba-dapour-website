@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import { copy, navigation, profileImageUrl } from "../content/siteContent";
+import { copy, navigation } from "../content/siteContent";
 import { useLanguage } from "./LanguageProvider";
 
 export function Header() {
@@ -16,7 +15,7 @@ export function Header() {
     <header className="v2-header">
       <div className="v2-shell v2-nav">
         <Link className="v2-brand" href="/" aria-label="Habiba Dapour home">
-          <span className="v2-brand-image"><Image alt="" height={44} src={profileImageUrl} width={44} /></span>
+          <span aria-hidden="true" className="v2-brand-mark">HD</span>
           <span>Habiba Dapour<small>Social Media & Growth Strategist</small></span>
         </Link>
 
@@ -34,7 +33,16 @@ export function Header() {
         <details className="v2-mobile-menu">
           <summary aria-label={text.menu}><span /><span /><span /></summary>
           <div>
-            <button className="v2-language" type="button" onClick={toggleLanguage}>{text.languageLabel}</button>
+            <button
+              className="v2-language"
+              type="button"
+              onClick={(event) => {
+                event.currentTarget.closest("details")?.removeAttribute("open");
+                toggleLanguage();
+              }}
+            >
+              {text.languageLabel}
+            </button>
             {navigation[language].map(([label, href]) => (
               <Link className={pathname === href ? "active" : ""} href={href} key={href}>{label}</Link>
             ))}
@@ -53,7 +61,11 @@ export function Footer() {
   return (
     <footer className="v2-footer">
       <div className="v2-shell v2-footer-grid">
-        <div>
+        <div className="v2-footer-intro">
+          <Link className="v2-brand v2-brand-footer" href="/" aria-label="Habiba Dapour home">
+            <span aria-hidden="true" className="v2-brand-mark">HD</span>
+            <span>Habiba Dapour</span>
+          </Link>
           <p className="v2-kicker v2-kicker-light">Habiba Dapour</p>
           <h2>{text.footer.heading}</h2>
           <p>{text.footer.copy}</p>

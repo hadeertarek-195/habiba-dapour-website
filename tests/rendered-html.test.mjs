@@ -22,15 +22,18 @@ test("all required public routes exist", () => {
   }
 });
 
-test("Lina case study includes bilingual content, media, store link, and structured metadata", () => {
+test("Lina case study includes bilingual content, linked media, store link, and structured metadata", () => {
   const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
   const component = readFileSync(new URL("../app/components/LinaCaseStudyPage.tsx", import.meta.url), "utf8");
   const page = readFileSync(new URL("../app/case-studies/lina/page.tsx", import.meta.url), "utf8");
   assert.match(content, /https:\/\/linnaaa\.com\//);
   assert.match(content, /لينا: بناء براند أزياء سعودي/);
+  assert.match(content, /national-day\/asalatuna\.webp/);
+  assert.match(content, /national-day\/ambition\.webp/);
+  assert.match(content, /اليوم الوطني السعودي: كل عباية تعبر عن قيمة وطنية/);
   assert.match(content, /lina-video-3\.mp4/);
   assert.match(content, /الصفحة الأولى من نتائج بحث Google/);
-  assert.match(component, /playsInline/);
+  assert.match(component, /href={video\.src}/);
   assert.match(component, /rel="noopener noreferrer"/);
   assert.match(page, /CreativeWork/);
   assert.match(page, /BreadcrumbList/);
@@ -76,14 +79,22 @@ test("ABQ AL HAYAT case study has secure external linking and structured metadat
   assert.match(source, /BreadcrumbList/);
 });
 
-test("ABQ AL HAYAT case study embeds the approved Shorts for direct preview", () => {
+test("ABQ AL HAYAT case study links the approved Shorts without video posters", () => {
   const component = readFileSync(new URL("../app/components/AbqCaseStudyPage.tsx", import.meta.url), "utf8");
   const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
   assert.match(content, /dXSrWXwzc3M/);
   assert.match(content, /4Dh3DvfOGNU/);
-  assert.match(component, /youtube-nocookie\.com\/embed/);
-  assert.match(component, /allowFullScreen/);
-  assert.match(component, /loading="lazy"/);
+  assert.match(component, /youtube\.com\/shorts/);
+  assert.doesNotMatch(component, /<iframe|<video/);
+});
+
+test("the only rendered photographic image is the prioritized home hero portrait", () => {
+  const components = sourceFiles(fileURLToPath(new URL("../app/components/", import.meta.url)))
+    .map((file) => readFileSync(file, "utf8"))
+    .join("\n");
+  assert.equal((components.match(/<Image\b/g) || []).length, 1);
+  assert.match(components, /<Image[^>]*priority/);
+  assert.doesNotMatch(components, /<img\b|<iframe\b|<video\b/);
 });
 
 test("customer-facing copy uses first-person singular voice", () => {

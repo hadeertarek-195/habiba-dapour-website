@@ -24,14 +24,16 @@ export default function ContactPageContent() {
   return (
     <SiteFrame>
       <main>
-        <section className="v2-page-hero v2-shell">
-          <p className="v2-kicker">{text.eyebrow}</p><h1>{text.title}</h1><p className="v2-lead">{text.intro}</p>
-        </section>
-        <section className="v2-section v2-shell v2-form-wrap">
-          {submitted ? (
-            <div className="v2-success" role="status"><span aria-hidden="true">✓</span><h2>{text.success}</h2><p>{text.successNote}</p><button className="v2-button v2-button-ghost" onClick={() => setSubmitted(false)} type="button">{language === "ar" ? "عدل البيانات" : "Edit details"}</button></div>
-          ) : (
-            <form className="v2-form" onSubmit={submit}>
+        <section className="v2-section v2-shell v2-contact-layout">
+          <aside className="v2-contact-intro">
+            <p className="v2-kicker">{text.eyebrow}</p><h1>{text.title}</h1><p className="v2-lead">{text.intro}</p>
+            <div className="v2-contact-links"><a href="mailto:habiba.dapour@gmail.com">habiba.dapour@gmail.com</a><a href="tel:+201004658868">+20 100 465 8868</a></div>
+          </aside>
+          <div className="v2-form-wrap">
+            {submitted ? (
+              <div className="v2-success" role="status"><span aria-hidden="true">✓</span><h2>{text.success}</h2><p>{text.successNote}</p><button className="v2-button v2-button-ghost" onClick={() => setSubmitted(false)} type="button">{language === "ar" ? "عدل البيانات" : "Edit details"}</button></div>
+            ) : (
+              <form className="v2-form" onSubmit={submit}>
               <div className="v2-form-grid">
                 <label>{text.labels[0]}<input autoComplete="name" name="name" required /></label>
                 <label>{text.labels[1]}<input autoComplete="organization" name="business" required /></label>
@@ -47,8 +49,9 @@ export default function ContactPageContent() {
                 <label className="wide">{text.labels[11]}<textarea name="details" rows={5} /></label>
               </div>
               <button className="v2-button v2-button-primary" type="submit">{text.submit}<span aria-hidden="true">↗</span></button>
-            </form>
-          )}
+              </form>
+            )}
+          </div>
         </section>
       </main>
     </SiteFrame>

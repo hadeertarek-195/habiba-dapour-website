@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 import { copy, khamCaseStudy } from "../content/siteContent";
@@ -34,7 +33,7 @@ export default function KhamCaseStudyPage() {
             <nav aria-label={language === "ar" ? "مسار الصفحة" : "Breadcrumb"} className="v2-breadcrumb">
               <Link href="/case-studies">{text.breadcrumb}</Link><span aria-hidden="true">/</span><span>Kham Al Jamal</span>
             </nav>
-            <div className="v2-kham-hero-grid">
+            <div className="v2-case-hero-grid">
               <div className="v2-kham-hero-copy">
                 <p className="v2-kicker">{text.badge}</p>
                 <h1>{text.title}</h1>
@@ -42,7 +41,7 @@ export default function KhamCaseStudyPage() {
                 <div className="v2-case-tags">{khamCaseStudy.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
                 <StoreLink />
               </div>
-              <div className="v2-kham-hero-image"><Image alt={text.imageAlt} fill priority sizes="(max-width: 800px) calc(100vw - 32px), 430px" src={khamCaseStudy.coverImage} /></div>
+              <div aria-hidden="true" className="v2-case-monogram">خام<small>KHAM AL JAMAL</small></div>
             </div>
           </div>
         </section>
@@ -87,9 +86,9 @@ export default function KhamCaseStudyPage() {
         <section className="v2-section v2-kham-campaign">
           <div className="v2-shell">
             <div className="v2-section-heading"><div><p className="v2-kicker">{text.campaignEyebrow}</p><h2>{text.campaignTitle}</h2><p>{text.campaignIntro}</p></div></div>
-            <div className="v2-kham-campaign-grid">
+            <div className="v2-creative-list">
               {khamCaseStudy.nationalDayCampaign.map((image) => (
-                <figure key={image.src}><Image alt={image.alt[language]} fill sizes="(max-width: 800px) calc(100vw - 32px), 50vw" src={image.src} /></figure>
+                <div key={image.src}><span aria-hidden="true">✦</span><p>{image.alt[language]}</p></div>
               ))}
             </div>
           </div>
