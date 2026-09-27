@@ -89,6 +89,16 @@ test("ABQ AL HAYAT case study embeds the approved Shorts for direct preview", ()
   assert.match(component, /loading="lazy"/);
 });
 
+test("ABQ AL HAYAT includes the Saudi National Day campaign gallery", () => {
+  const component = readFileSync(new URL("../app/components/AbqCaseStudyPage.tsx", import.meta.url), "utf8");
+  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
+  const campaignDirectory = fileURLToPath(new URL("../public/case-studies/abq-al-hayat/national-day/", import.meta.url));
+  assert.equal(readdirSync(campaignDirectory).filter((file) => file.endsWith(".jpeg")).length, 6);
+  assert.match(content, /nationalDayCampaign/);
+  assert.match(content, /اليوم الوطني السعودي: 96 عامًا من النمو والبناء والانتماء/);
+  assert.match(component, /v2-abq-campaign-grid/);
+});
+
 test("Habiba's portrait is rendered once and prioritized in the home hero", () => {
   const components = sourceFiles(fileURLToPath(new URL("../app/components/", import.meta.url)))
     .map((file) => readFileSync(file, "utf8"))
@@ -116,6 +126,8 @@ test("cards use ordered numbering instead of decorative glyphs", () => {
   assert.match(pageComponents, /padStart\(2, "0"\)/);
   assert.doesNotMatch(pageComponents, /[✦◇○＋]/);
   assert.match(styles, /\.v2-services-preview,\.v2-service-list\{grid-template-columns:repeat\(2/);
+  assert.match(styles, /\.v2-case-grid\.compact\{grid-template-columns:repeat\(3/);
+  assert.match(styles, /featured project is highlighted by color, not size/);
 });
 
 test("analytics and bilingual language state remain wired", () => {

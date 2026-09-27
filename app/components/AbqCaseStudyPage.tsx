@@ -132,6 +132,17 @@ export default function AbqCaseStudyPage() {
           </div>
         </section>
 
+        <section className="v2-section v2-abq-campaign">
+          <div className="v2-shell">
+            <div className="v2-section-heading"><div><p className="v2-kicker">{text.campaignEyebrow}</p><h2>{text.campaignTitle}</h2><p>{text.campaignIntro}</p></div></div>
+            <div className="v2-abq-campaign-grid">
+              {abqCaseStudy.nationalDayCampaign.map((image) => (
+                <figure key={image.src}><Image alt={image.alt[language]} fill sizes="(max-width: 560px) calc(100vw - 24px), (max-width: 800px) 50vw, 33vw" src={image.src} /></figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="v2-section v2-shell v2-takeaway">
           <p className="v2-kicker">{text.takeawayTitle}</p>
           <blockquote>{text.takeaway}</blockquote>
