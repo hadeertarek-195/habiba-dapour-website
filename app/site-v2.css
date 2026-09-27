@@ -38,3 +38,18 @@ html{scroll-padding-top:88px}body{overflow-x:hidden;background:var(--v2-paper);c
 .v2-lina-video-grid{max-width:900px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-inline:auto}.v2-lina-video-grid video{width:100%;border:1px solid var(--v2-line);border-radius:var(--v2-radius);background:var(--v2-ink);box-shadow:var(--v2-shadow);object-fit:cover}.v2-lina-video-grid video.landscape{grid-column:1/-1;aspect-ratio:16/9}.v2-lina-video-grid video.portrait{width:min(100%,360px);aspect-ratio:9/16;justify-self:center}
 @media(max-width:800px){.v2-case-card.featured{grid-template-columns:1fr;grid-template-rows:300px 1fr}.v2-case-card.featured .v2-case-visual{min-height:300px}.v2-case-hero-image{width:min(100%,430px)}.v2-kham-campaign-grid,.v2-lina-national-grid,.v2-lina-gallery{grid-template-columns:1fr}.v2-lina-gallery>div,.v2-lina-gallery>div.wide{grid-row:auto;min-height:0;aspect-ratio:16/10}}
 @media(max-width:560px){.v2-case-card,.v2-case-card.featured{grid-template-rows:220px 1fr;min-height:0}.v2-case-card .v2-case-visual,.v2-case-card.featured .v2-case-visual{min-height:220px}.v2-case-copy,.v2-case-card.featured .v2-case-copy{padding:26px}.v2-video-grid,.v2-lina-video-grid{grid-template-columns:1fr}.v2-video-frame{width:min(100%,360px);margin-inline:auto}.v2-lina-video-grid video.landscape{grid-column:auto}.v2-kham-campaign-grid figure,.v2-lina-national-grid figure,.v2-lina-gallery>div,.v2-lina-gallery>div.wide,.v2-lina-video-grid video{border-radius:20px}}
+
+/* Ordered labels replace the former decorative card glyphs across the site. */
+.v2-services-preview,.v2-service-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+.v2-card-number,.v2-step-number,.v2-statement-number{display:block;color:var(--v2-pink-dark);font-size:14px;font-weight:900;letter-spacing:.14em;line-height:1}
+.v2-card-number{margin-bottom:38px}
+.v2-case-meta .v2-card-number{margin:0;color:inherit}
+.v2-case-card.featured .v2-card-number{color:#ffcce4}
+.v2-service-head .v2-card-number{margin-bottom:26px}
+.v2-step-number{margin-bottom:26px}
+.v2-process-grid h3{margin-top:0}
+.v2-process-grid h3:before,.v2-problem li:before{content:none}
+.v2-problem li{display:flex;align-items:flex-start;gap:14px}
+.v2-problem-number{flex:0 0 auto;color:#ff8bc2;font-size:12px;font-weight:900;letter-spacing:.12em}
+.v2-statement-number{margin-bottom:22px}
+@media(max-width:560px){.v2-services-preview,.v2-service-list{grid-template-columns:1fr}}

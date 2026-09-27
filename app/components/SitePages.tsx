@@ -11,9 +11,8 @@ function Arrow() {
   return <span className="v2-arrow" aria-hidden="true">↗</span>;
 }
 
-function CardIcon({ index }: { index: number }) {
-  const icons = ["✦", "◇", "○", "＋"];
-  return <span aria-hidden="true" className="v2-card-icon">{icons[index % icons.length]}</span>;
+function NumberBadge({ index }: { index: number }) {
+  return <span aria-hidden="true" className="v2-card-number">{String(index + 1).padStart(2, "0")}</span>;
 }
 
 function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: string; intro: string }) {
@@ -34,8 +33,8 @@ function Process() {
       <div className="v2-shell">
         <div className="v2-section-heading"><h2>{text.processTitle}</h2><p>{text.processIntro}</p></div>
         <div className="v2-process-grid">
-          {processSteps[language].map(([title, details]) => (
-            <article key={title}><h3>{title}</h3><p>{details}</p></article>
+          {processSteps[language].map(([title, details], index) => (
+            <article key={title}><span className="v2-step-number">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{details}</p></article>
           ))}
         </div>
       </div>
@@ -60,7 +59,7 @@ function CaseGrid({ compact = false }: { compact?: boolean }) {
             />
           </div>
           <div className="v2-case-copy">
-            <div className="v2-case-meta"><CardIcon index={index} /><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
+            <div className="v2-case-meta"><NumberBadge index={index} /><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
             <h3>{item.published ? item.title[language] : item.name[language]}</h3>
             <p>{item.published ? item.summary[language] : text.common.caseSoon}</p>
             {item.published ? <span className="v2-case-cta">{item.cta[language]}<Arrow /></span> : null}
@@ -127,7 +126,7 @@ export function HomePage() {
         <section className="v2-section v2-problem">
           <div className="v2-shell v2-problem-grid">
             <div><p className="v2-kicker">{language === "ar" ? "البيزنس أولًا" : "Business first"}</p><h2>{text.home.problemTitle}</h2></div>
-            <div><ul>{text.home.problems.map((problem) => <li key={problem}>{problem}</li>)}</ul><p className="v2-callout">{text.home.problemClose}</p></div>
+            <div><ul>{text.home.problems.map((problem, index) => <li key={problem}><span className="v2-problem-number">{String(index + 1).padStart(2, "0")}</span>{problem}</li>)}</ul><p className="v2-callout">{text.home.problemClose}</p></div>
           </div>
         </section>
 
@@ -140,7 +139,7 @@ export function HomePage() {
             <div className="v2-section-heading"><h2>{text.home.servicesTitle}</h2><Link className="v2-text-link" href="/services">{text.common.learn}<Arrow /></Link></div>
             <div className="v2-card-grid v2-services-preview">
               {services[language].map((service, index) => (
-                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><CardIcon index={index} /><h3>{service.title}</h3><p>{service.preview}</p><Arrow /></Link>
+                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><NumberBadge index={index} /><h3>{service.title}</h3><p>{service.preview}</p><Arrow /></Link>
               ))}
             </div>
           </div>
@@ -149,7 +148,7 @@ export function HomePage() {
         <section className="v2-section v2-shell">
           <div className="v2-section-heading"><h2>{text.home.helpTitle}</h2><Link className="v2-text-link" href="/who-we-help">{text.common.learn}<Arrow /></Link></div>
           <div className="v2-card-grid v2-audience-preview">
-            {audiences[language].map((item, index) => <Link className="v2-audience-card" href="/who-we-help" key={item.title}><CardIcon index={index} /><h3>{item.title}</h3><p>{item.copy}</p><Arrow /></Link>)}
+            {audiences[language].map((item, index) => <Link className="v2-audience-card" href="/who-we-help" key={item.title}><NumberBadge index={index} /><h3>{item.title}</h3><p>{item.copy}</p><Arrow /></Link>)}
           </div>
         </section>
 
@@ -186,7 +185,7 @@ export function ServicesPage() {
       <section className="v2-section v2-shell v2-service-list">
         {services[language].map((service, index) => (
           <article id={service.id} key={service.id}>
-            <div className="v2-service-head"><CardIcon index={index} /><h2>{service.title}</h2><p>{service.preview}</p></div>
+            <div className="v2-service-head"><NumberBadge index={index} /><h2>{service.title}</h2><p>{service.preview}</p></div>
             <div className="v2-service-details">
               <div><strong>{text.services.labels[0]}</strong><p>{service.problem}</p></div>
               <div><strong>{text.services.labels[1]}</strong><p>{service.fit}</p></div>
@@ -212,7 +211,7 @@ export function WhoWeHelpPage() {
       <section className="v2-section v2-shell v2-audience-list">
         {audiences[language].map((item, index) => (
           <article key={item.title}>
-            <CardIcon index={index} /><h2>{item.title}</h2><p className="v2-audience-lead">{item.copy}</p>
+            <NumberBadge index={index} /><h2>{item.title}</h2><p className="v2-audience-lead">{item.copy}</p>
             <div className="v2-audience-details"><div><strong>{text.help.labels[0]}</strong><p>{item.challenges}</p></div><div><strong>{text.help.labels[1]}</strong><p>{item.relevant}</p></div><div><strong>{text.help.labels[2]}</strong><p>{item.improve}</p></div></div>
             <Link className="v2-button v2-button-ghost" href="/contact">{text.book}<Arrow /></Link>
           </article>
@@ -235,7 +234,7 @@ export function AboutPage() {
     <SiteFrame><main>
       <section className="v2-page-hero v2-shell v2-about-hero">
         <div className="v2-about-heading"><p className="v2-kicker">{text.about.eyebrow}</p><h1>{text.about.title}</h1></div>
-        <div className="v2-about-statement"><span aria-hidden="true">✦</span><p className="v2-lead">{text.about.body}</p></div>
+        <div className="v2-about-statement"><span aria-hidden="true" className="v2-statement-number">01</span><p className="v2-lead">{text.about.body}</p></div>
       </section>
       <section className="v2-section v2-tint"><div className="v2-shell"><div className="v2-section-heading"><h2>{text.about.valuesTitle}</h2></div><div className="v2-values-grid">{text.about.values.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
       <Process />

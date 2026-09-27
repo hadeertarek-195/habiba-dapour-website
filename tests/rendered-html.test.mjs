@@ -109,11 +109,13 @@ test("customer-facing copy uses first-person singular voice", () => {
   assert.doesNotMatch(visibleStrings, /بنساعد|هنساعد|بنبدأ|بنراجع|بنخطط|بندير|بنقيس|بنطور|نقدر نساعد|إحنا|عندنا|طريقتنا|خدماتنا|شغلنا|أعمالنا|شاركنا|هنراجع|نتواصل معاك/);
 });
 
-test("decorative section numbering is absent", () => {
-  const pageComponents = ["SitePages.tsx", "AuditPageV2.tsx"]
-    .map((file) => readFileSync(new URL(`../app/components/${file}`, import.meta.url), "utf8"))
-    .join("\n");
-  assert.doesNotMatch(pageComponents, /v2-number|v2-index|>0[1-5]</);
+test("cards use ordered numbering instead of decorative glyphs", () => {
+  const pageComponents = readFileSync(new URL("../app/components/SitePages.tsx", import.meta.url), "utf8");
+  const styles = readFileSync(new URL("../app/site-v2.css", import.meta.url), "utf8");
+  assert.match(pageComponents, /function NumberBadge/);
+  assert.match(pageComponents, /padStart\(2, "0"\)/);
+  assert.doesNotMatch(pageComponents, /[✦◇○＋]/);
+  assert.match(styles, /\.v2-services-preview,\.v2-service-list\{grid-template-columns:repeat\(2/);
 });
 
 test("analytics and bilingual language state remain wired", () => {
