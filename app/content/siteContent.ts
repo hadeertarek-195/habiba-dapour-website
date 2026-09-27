@@ -173,14 +173,14 @@ export const audiences = {
 } as const;
 
 export const caseStudies = [
-  { slug: "abq-al-hayat", name: { en: "ABQ AL HAYAT", ar: "عبق الحياة" }, title: { en: "ABQ AL HAYAT: Building a Content-Led Growth System", ar: "عبق الحياة: بناء منظومة نمو يقودها المحتوى" }, category: { en: "B2B content-led growth", ar: "نمو B2B يقوده المحتوى" }, coverImage: "https://i.ibb.co/h1rDjJ2m/Untitled-1-01.webp", summary: { en: "A case study showing how I connected content strategy, audience insights, paid media, sales feedback, and long-term digital assets to create measurable growth.", ar: "دراسة حالة توضح إزاي بنيت منظومة تربط استراتيجية المحتوى، فهم الجمهور، الإعلانات، بيانات المبيعات والأصول الرقمية لتحقيق نمو قابل للقياس." }, cta: { en: "View Case Study", ar: "استعرض دراسة الحالة" }, serviceTags: ["B2B Marketing", "Content Strategy", "Paid Media"], featured: true, published: true },
-  { slug: "kham-al-jamal", name: { en: "Kham Al Jamal", ar: "خام الجمال" }, title: { en: "Kham Al Jamal: Organic Growth Through a Trusted UGC Persona", ar: "خام الجمال: نمو عضوي تقوده شخصية UGC موثوقة" }, category: { en: "Saudi beauty & organic UGC", ar: "تجميل سعودي ومحتوى UGC عضوي" }, coverImage: "https://i.ibb.co/gZtm5pNV/Untitled-1-02.webp", summary: { en: "A case study in turning an in-house persona, native TikTok storytelling, community conversations, and conversion offers into one organic growth system.", ar: "دراسة حالة عن تحويل شخصية من داخل البراند، ومحتوى TikTok العفوي، وحوارات الجمهور، وعروض التحويل إلى منظومة نمو عضوي واحدة." }, cta: { en: "View Case Study", ar: "استعرض دراسة الحالة" }, serviceTags: ["UGC Strategy", "Persona Building", "Content Operations", "Conversion"], featured: false, published: true },
-  { slug: "lina", name: { en: "Lina", ar: "لينا" }, title: { en: "Lina: Building a Saudi Fashion Brand Through Storytelling", ar: "لينا: بناء براند أزياء سعودي من خلال القصة" }, category: { en: "Saudi fashion & e-commerce", ar: "أزياء سعودية ومتجر إلكتروني" }, coverImage: "https://i.ibb.co/hFq0ZY8w/Untitled-1-03.webp", summary: { en: "A culturally rooted brand system connecting persona design, audience psychology, AI content, storytelling, and e-commerce optimization.", ar: "منظومة براند محلية تربط بناء الشخصية، سيكولوجية الجمهور، محتوى الذكاء الاصطناعي، القصة وتطوير المتجر الإلكتروني." }, cta: { en: "View Case Study", ar: "استعرض دراسة الحالة" }, serviceTags: ["Brand Strategy", "Content", "AI Production", "SEO"], featured: false, published: true },
+  { slug: "abq-al-hayat", name: { en: "ABQ AL HAYAT", ar: "عبق الحياة" }, title: { en: "ABQ AL HAYAT: Building a Content-Led Growth System", ar: "عبق الحياة: بناء منظومة نمو يقودها المحتوى" }, category: { en: "B2B content-led growth", ar: "نمو B2B يقوده المحتوى" }, coverImage: "/case-studies/covers/abq-al-hayat.webp", summary: { en: "A case study showing how I connected content strategy, audience insights, paid media, sales feedback, and long-term digital assets to create measurable growth.", ar: "دراسة حالة توضح إزاي بنيت منظومة تربط استراتيجية المحتوى، فهم الجمهور، الإعلانات، بيانات المبيعات والأصول الرقمية لتحقيق نمو قابل للقياس." }, cta: { en: "View Case Study", ar: "استعرض دراسة الحالة" }, serviceTags: ["B2B Marketing", "Content Strategy", "Paid Media"], featured: true, published: true },
+  { slug: "kham-al-jamal", name: { en: "Kham Al Jamal", ar: "خام الجمال" }, title: { en: "Kham Al Jamal: Organic Growth Through a Trusted UGC Persona", ar: "خام الجمال: نمو عضوي تقوده شخصية UGC موثوقة" }, category: { en: "Saudi beauty & organic UGC", ar: "تجميل سعودي ومحتوى UGC عضوي" }, coverImage: "/case-studies/covers/kham-al-jamal.webp", summary: { en: "A case study in turning an in-house persona, native TikTok storytelling, community conversations, and conversion offers into one organic growth system.", ar: "دراسة حالة عن تحويل شخصية من داخل البراند، ومحتوى TikTok العفوي، وحوارات الجمهور، وعروض التحويل إلى منظومة نمو عضوي واحدة." }, cta: { en: "View Case Study", ar: "استعرض دراسة الحالة" }, serviceTags: ["UGC Strategy", "Persona Building", "Content Operations", "Conversion"], featured: false, published: true },
+  { slug: "lina", name: { en: "Lina", ar: "لينا" }, title: { en: "Lina: Building a Saudi Fashion Brand Through Storytelling", ar: "لينا: بناء براند أزياء سعودي من خلال القصة" }, category: { en: "Saudi fashion & e-commerce", ar: "أزياء سعودية ومتجر إلكتروني" }, coverImage: "/case-studies/covers/lina.webp", summary: { en: "A culturally rooted brand system connecting persona design, audience psychology, AI content, storytelling, and e-commerce optimization.", ar: "منظومة براند محلية تربط بناء الشخصية، سيكولوجية الجمهور، محتوى الذكاء الاصطناعي، القصة وتطوير المتجر الإلكتروني." }, cta: { en: "View Case Study", ar: "استعرض دراسة الحالة" }, serviceTags: ["Brand Strategy", "Content", "AI Production", "SEO"], featured: false, published: true },
 ] as const;
 
 export const abqCaseStudy = {
   website: "https://abqalhayat.com/",
-  coverImage: "https://i.ibb.co/h1rDjJ2m/Untitled-1-01.webp",
+  coverImage: "/case-studies/covers/abq-al-hayat.webp",
   tags: ["B2B Marketing", "Content Strategy", "Social Media Management", "Paid Media", "Sales Alignment", "SEO", "Multilingual Markets"],
   media: [
     { youtubeId: "dXSrWXwzc3M", title: { en: "Why excellent projects may not reach the position they deserve", ar: "ليه مشاريع ممتازة ممكن ما توصلش للمكانة اللي تستحقها" } },
@@ -288,7 +288,7 @@ export const abqCaseStudy = {
 
 export const linaCaseStudy = {
   website: "https://linnaaa.com/",
-  coverImage: "https://i.ibb.co/hFq0ZY8w/Untitled-1-03.webp",
+  coverImage: "/case-studies/covers/lina.webp",
   nationalDayCampaign: [
     { src: "/case-studies/lina/national-day/asalatuna.webp", alt: { en: "Lina Saudi National Day campaign expressing authenticity through a cream and brown abaya", ar: "حملة لينا لليوم الوطني وقيمة أصالتنا من خلال عباية باللونين الكريمي والبني" } },
     { src: "/case-studies/lina/national-day/jooduna.webp", alt: { en: "Lina Saudi National Day campaign expressing generosity through a deep blue abaya", ar: "حملة لينا لليوم الوطني وقيمة جودنا من خلال عباية باللون الأزرق العميق" } },
@@ -384,7 +384,7 @@ export const linaCaseStudy = {
 
 export const khamCaseStudy = {
   website: "https://kham-aljamal.com/",
-  coverImage: "https://i.ibb.co/gZtm5pNV/Untitled-1-02.webp",
+  coverImage: "/case-studies/covers/kham-al-jamal.webp",
   nationalDayCampaign: [
     { src: "/case-studies/kham-al-jamal/saudi-national-day-1.jpeg", alt: { en: "Kham Al Jamal Grow Hair characters in a Saudi heritage setting for the Saudi National Day campaign", ar: "شخصيات جرو هير من خام الجمال في أجواء تراثية ضمن حملة اليوم الوطني السعودي" } },
     { src: "/case-studies/kham-al-jamal/saudi-national-day-2.jpeg", alt: { en: "Kham Al Jamal Grow Hair family celebrating Saudi National Day 96", ar: "عائلة جرو هير من خام الجمال تحتفل باليوم الوطني السعودي 96" } },

@@ -22,7 +22,7 @@ test("all required public routes exist", () => {
   }
 });
 
-test("Lina case study includes bilingual content, linked media, store link, and structured metadata", () => {
+test("Lina case study includes bilingual content, media, store link, and structured metadata", () => {
   const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
   const component = readFileSync(new URL("../app/components/LinaCaseStudyPage.tsx", import.meta.url), "utf8");
   const page = readFileSync(new URL("../app/case-studies/lina/page.tsx", import.meta.url), "utf8");
@@ -33,7 +33,7 @@ test("Lina case study includes bilingual content, linked media, store link, and 
   assert.match(content, /اليوم الوطني السعودي: كل عباية تعبر عن قيمة وطنية/);
   assert.match(content, /lina-video-3\.mp4/);
   assert.match(content, /الصفحة الأولى من نتائج بحث Google/);
-  assert.match(component, /href={video\.src}/);
+  assert.match(component, /playsInline/);
   assert.match(component, /rel="noopener noreferrer"/);
   assert.match(page, /CreativeWork/);
   assert.match(page, /BreadcrumbList/);
@@ -66,7 +66,7 @@ test("case-study set contains only the approved projects", () => {
   const slugs = [...content.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(slugs, ["abq-al-hayat", "kham-al-jamal", "lina"]);
   assert.match(content, /slug: "abq-al-hayat"[\s\S]*?featured: true[\s\S]*?published: true/);
-  for (const image of ["Untitled-1-01.webp", "Untitled-1-02.webp", "Untitled-1-03.webp"]) {
+  for (const image of ["covers/abq-al-hayat.webp", "covers/kham-al-jamal.webp", "covers/lina.webp"]) {
     assert.match(content, new RegExp(image.replace(".", "\\.")));
   }
 });
@@ -79,22 +79,24 @@ test("ABQ AL HAYAT case study has secure external linking and structured metadat
   assert.match(source, /BreadcrumbList/);
 });
 
-test("ABQ AL HAYAT case study links the approved Shorts without video posters", () => {
+test("ABQ AL HAYAT case study embeds the approved Shorts for direct preview", () => {
   const component = readFileSync(new URL("../app/components/AbqCaseStudyPage.tsx", import.meta.url), "utf8");
   const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
   assert.match(content, /dXSrWXwzc3M/);
   assert.match(content, /4Dh3DvfOGNU/);
-  assert.match(component, /youtube\.com\/shorts/);
-  assert.doesNotMatch(component, /<iframe|<video/);
+  assert.match(component, /youtube-nocookie\.com\/embed/);
+  assert.match(component, /allowFullScreen/);
+  assert.match(component, /loading="lazy"/);
 });
 
-test("the only rendered photographic image is the prioritized home hero portrait", () => {
+test("Habiba's portrait is rendered once and prioritized in the home hero", () => {
   const components = sourceFiles(fileURLToPath(new URL("../app/components/", import.meta.url)))
     .map((file) => readFileSync(file, "utf8"))
     .join("\n");
-  assert.equal((components.match(/<Image\b/g) || []).length, 1);
-  assert.match(components, /<Image[^>]*priority/);
-  assert.doesNotMatch(components, /<img\b|<iframe\b|<video\b/);
+  assert.equal((components.match(/src={profileImageUrl}/g) || []).length, 1);
+  assert.match(components, /<Image[^>]*priority[^>]*src={profileImageUrl}/);
+  assert.match(components, /<iframe\b/);
+  assert.match(components, /<video\b/);
 });
 
 test("customer-facing copy uses first-person singular voice", () => {

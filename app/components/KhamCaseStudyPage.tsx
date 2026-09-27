@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { copy, khamCaseStudy } from "../content/siteContent";
@@ -41,7 +42,7 @@ export default function KhamCaseStudyPage() {
                 <div className="v2-case-tags">{khamCaseStudy.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
                 <StoreLink />
               </div>
-              <div aria-hidden="true" className="v2-case-monogram">خام<small>KHAM AL JAMAL</small></div>
+              <div className="v2-case-hero-image"><Image alt={text.imageAlt} fill priority sizes="(max-width: 800px) calc(100vw - 32px), 430px" src={khamCaseStudy.coverImage} /></div>
             </div>
           </div>
         </section>
@@ -86,9 +87,9 @@ export default function KhamCaseStudyPage() {
         <section className="v2-section v2-kham-campaign">
           <div className="v2-shell">
             <div className="v2-section-heading"><div><p className="v2-kicker">{text.campaignEyebrow}</p><h2>{text.campaignTitle}</h2><p>{text.campaignIntro}</p></div></div>
-            <div className="v2-creative-list">
+            <div className="v2-kham-campaign-grid">
               {khamCaseStudy.nationalDayCampaign.map((image) => (
-                <div key={image.src}><span aria-hidden="true">✦</span><p>{image.alt[language]}</p></div>
+                <figure key={image.src}><Image alt={image.alt[language]} fill sizes="(max-width: 800px) calc(100vw - 32px), 50vw" src={image.src} /></figure>
               ))}
             </div>
           </div>

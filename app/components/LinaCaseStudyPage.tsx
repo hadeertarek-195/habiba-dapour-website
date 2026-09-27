@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { copy, linaCaseStudy } from "../content/siteContent";
@@ -41,7 +42,7 @@ export default function LinaCaseStudyPage() {
                 <div className="v2-case-tags">{linaCaseStudy.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
                 <StoreLink />
               </div>
-              <div aria-hidden="true" className="v2-case-monogram">لينا<small>LINA</small></div>
+              <div className="v2-case-hero-image"><Image alt={text.imageAlt} fill priority sizes="(max-width: 800px) calc(100vw - 32px), 430px" src={linaCaseStudy.coverImage} /></div>
             </div>
           </div>
         </section>
@@ -81,8 +82,8 @@ export default function LinaCaseStudyPage() {
         <section className="v2-section v2-lina-gallery-section">
           <div className="v2-shell">
             <div className="v2-section-heading"><div><h2>{text.galleryTitle}</h2><p>{text.galleryIntro}</p></div></div>
-            <div className="v2-creative-list">
-              {linaCaseStudy.gallery.map((image) => <div key={image.src}><span aria-hidden="true">◇</span><p>{image.alt[language]}</p></div>)}
+            <div className="v2-lina-gallery">
+              {linaCaseStudy.gallery.map((image, index) => <div className={index === 0 ? "wide" : ""} key={image.src}><Image alt={image.alt[language]} fill sizes={index === 0 ? "(max-width: 800px) calc(100vw - 32px), 65vw" : "(max-width: 800px) calc(100vw - 32px), 35vw"} src={image.src} /></div>)}
             </div>
           </div>
         </section>
@@ -90,9 +91,9 @@ export default function LinaCaseStudyPage() {
         <section className="v2-section v2-lina-national-day">
           <div className="v2-shell">
             <div className="v2-section-heading"><div><p className="v2-kicker v2-kicker-light">{text.campaignEyebrow}</p><h2>{text.campaignTitle}</h2><p>{text.campaignIntro}</p></div></div>
-            <div className="v2-creative-list v2-creative-list-wide">
+            <div className="v2-lina-national-grid">
               {linaCaseStudy.nationalDayCampaign.map((image) => (
-                <div key={image.src}><span aria-hidden="true">✦</span><p>{image.alt[language]}</p></div>
+                <figure key={image.src}><Image alt={image.alt[language]} fill sizes="(max-width: 800px) calc(100vw - 32px), 50vw" src={image.src} /></figure>
               ))}
             </div>
           </div>
@@ -100,8 +101,8 @@ export default function LinaCaseStudyPage() {
 
         <section className="v2-section v2-shell v2-lina-videos">
           <div className="v2-section-heading"><div><h2>{text.videosTitle}</h2><p>{text.videosIntro}</p></div></div>
-          <div className="v2-media-links">
-            {linaCaseStudy.videos.map((video) => <a href={video.src} key={video.src} rel="noopener noreferrer" target="_blank"><span aria-hidden="true">▶</span><strong>{video.title[language]}</strong><Arrow external /></a>)}
+          <div className="v2-lina-video-grid">
+            {linaCaseStudy.videos.map((video, index) => <video aria-label={video.title[language]} className={index === 0 ? "landscape" : "portrait"} controls key={video.src} playsInline preload="metadata"><source src={video.src} type="video/mp4" /></video>)}
           </div>
         </section>
 

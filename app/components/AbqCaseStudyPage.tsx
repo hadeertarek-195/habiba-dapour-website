@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 import { abqCaseStudy, copy } from "../content/siteContent";
@@ -27,7 +28,7 @@ function WebsiteLink() {
   );
 }
 
-function MediaLinks({ media }: { media: ReadonlyArray<{ youtubeId: string; title: { en: string; ar: string } }> }) {
+function MediaGallery({ media }: { media: ReadonlyArray<{ youtubeId: string; title: { en: string; ar: string } }> }) {
   const { language } = useLanguage();
   const text = abqCaseStudy[language];
   if (media.length === 0) return null;
@@ -38,11 +39,18 @@ function MediaLinks({ media }: { media: ReadonlyArray<{ youtubeId: string; title
         <div className="v2-section-heading">
           <div><p className="v2-kicker">ABQ AL HAYAT</p><h2>{text.mediaTitle}</h2><p>{text.mediaIntro}</p></div>
         </div>
-        <div className="v2-media-links">
+        <div className="v2-video-grid">
           {media.map((video) => (
-            <a href={`https://youtube.com/shorts/${video.youtubeId}`} key={video.youtubeId} rel="noopener noreferrer" target="_blank">
-              <span aria-hidden="true">▶</span><strong>{video.title[language]}</strong><Arrow external />
-            </a>
+            <div className="v2-video-frame" key={video.youtubeId}>
+              <iframe
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0`}
+                title={video.title[language]}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -70,7 +78,7 @@ export default function AbqCaseStudyPage() {
                 <div className="v2-case-tags">{abqCaseStudy.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
                 <WebsiteLink />
               </div>
-              <div aria-hidden="true" className="v2-case-monogram">ABQ<small>AL HAYAT</small></div>
+              <div className="v2-case-hero-image"><Image alt={text.imageAlt} fill priority sizes="(max-width: 800px) calc(100vw - 32px), 430px" src={abqCaseStudy.coverImage} /></div>
             </div>
           </div>
         </section>
@@ -129,7 +137,7 @@ export default function AbqCaseStudyPage() {
           <blockquote>{text.takeaway}</blockquote>
         </section>
 
-        <MediaLinks media={abqCaseStudy.media} />
+        <MediaGallery media={abqCaseStudy.media} />
 
         <section className="v2-final-cta v2-shell v2-case-final">
           <p className="v2-kicker v2-kicker-light">Habiba Dapour</p>

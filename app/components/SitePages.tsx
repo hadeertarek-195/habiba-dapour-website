@@ -51,6 +51,14 @@ function CaseGrid({ compact = false }: { compact?: boolean }) {
       {caseStudies.map((item, index) => {
         const className = `v2-case-card ${item.featured ? "featured" : ""} ${item.published ? "published" : ""}`;
         const body = <>
+          <div className="v2-case-visual">
+            <Image
+              alt={language === "ar" ? `صورة مشروع ${item.name.ar}` : `${item.name.en} project image`}
+              fill
+              sizes={item.featured ? "(max-width: 800px) calc(100vw - 32px), 430px" : "(max-width: 800px) calc(100vw - 32px), 50vw"}
+              src={item.coverImage}
+            />
+          </div>
           <div className="v2-case-copy">
             <div className="v2-case-meta"><CardIcon index={index} /><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
             <h3>{item.published ? item.title[language] : item.name[language]}</h3>
