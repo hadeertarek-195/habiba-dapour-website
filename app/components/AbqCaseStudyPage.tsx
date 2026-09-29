@@ -113,6 +113,13 @@ export default function AbqCaseStudyPage() {
             <div className="v2-impact-grid">
               {text.results.map((result) => <article key={result.label}><strong>{result.metric}</strong><h3>{result.label}</h3><p>{result.copy}</p></article>)}
             </div>
+            <article className="v2-contracts-proof">
+              <div className="v2-contracts-proof-copy"><strong>65</strong><h3>{text.contractsSnapshotTitle}</h3><p>{text.contractsSnapshotCopy}</p></div>
+              <figure>
+                <div className="v2-contracts-proof-image"><Image alt={abqCaseStudy.contractsSnapshot.alt[language]} fill sizes="(max-width: 800px) calc(100vw - 64px), 70vw" src={abqCaseStudy.contractsSnapshot.src} /></div>
+                <figcaption>{text.contractsSnapshotCaption}</figcaption>
+              </figure>
+            </article>
           </div>
         </section>
 

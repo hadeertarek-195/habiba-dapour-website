@@ -77,6 +77,9 @@ test("ABQ AL HAYAT case study has secure external linking and structured metadat
   assert.match(source, /rel="noopener noreferrer"/);
   assert.match(source, /CreativeWork/);
   assert.match(source, /BreadcrumbList/);
+  assert.equal(existsSync(new URL("../public/case-studies/abq-al-hayat/contracts-september-2026.png", import.meta.url)), true);
+  assert.match(source, /contracts-september-2026\.png/);
+  assert.match(source, /v2-contracts-proof/);
 });
 
 test("ABQ AL HAYAT case study embeds the approved Shorts for direct preview", () => {

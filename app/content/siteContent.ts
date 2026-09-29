@@ -181,6 +181,10 @@ export const caseStudies = [
 export const abqCaseStudy = {
   website: "https://abqalhayat.com/",
   coverImage: "/case-studies/covers/abq-al-hayat.webp",
+  contractsSnapshot: {
+    src: "/case-studies/abq-al-hayat/contracts-september-2026.png",
+    alt: { en: "ABQ AL HAYAT dashboard showing 65 completed-contract clients in September 2026", ar: "لوحة تعاقدات عبق الحياة وتوضح 65 عميلًا ضمن التعاقدات المكتملة في سبتمبر 2026" },
+  },
   tags: ["B2B Marketing", "Content Strategy", "Social Media Management", "Paid Media", "Sales Alignment", "SEO", "Multilingual Markets"],
   media: [
     { youtubeId: "dXSrWXwzc3M", title: { en: "Why excellent projects may not reach the position they deserve", ar: "ليه مشاريع ممتازة ممكن ما توصلش للمكانة اللي تستحقها" } },
@@ -216,6 +220,9 @@ export const abqCaseStudy = {
     ],
     impactTitle: "Business Impact",
     impactIntro: "Approved results from the project period, presented without attributing every business outcome to marketing alone.",
+    contractsSnapshotTitle: "September 2026 Contract Snapshot",
+    contractsSnapshotCopy: "A September 2026 operations-dashboard snapshot shows 65 clients under completed contracts at the time of capture. I present it as supporting business evidence from the project period, not as an outcome attributable to marketing alone.",
+    contractsSnapshotCaption: "Operations dashboard snapshot supplied by ABQ AL HAYAT, September 2026.",
     results: [
       { metric: "3.3×", label: "Monthly contracts", copy: "Monthly contracts increased from 18 in December 2025 to 60 in July 2026, representing 3.3× the original volume or an increase of approximately 233%." },
       { metric: "SAR 5", label: "Average cost per lead", copy: "Average cost per lead decreased from SAR 14–17 to SAR 5, while the Sports Register campaign achieved the best recorded CPL at SAR 1.99." },
@@ -268,6 +275,9 @@ export const abqCaseStudy = {
     ],
     impactTitle: "أثر المشروع على البيزنس",
     impactIntro: "النتائج المعتمدة خلال فترة المشروع، مع تجنب نسب كل نتيجة في البيزنس إلى التسويق وحده.",
+    contractsSnapshotTitle: "لقطة تعاقدات سبتمبر 2026",
+    contractsSnapshotCopy: "توضح لقطة لوحة المتابعة خلال سبتمبر 2026 وجود 65 عميلًا ضمن التعاقدات المكتملة وقت التقاط الصورة. أعرضها كدليل داعم من فترة المشروع، من غير نسب النتيجة بالكامل للتسويق وحده.",
+    contractsSnapshotCaption: "لقطة من لوحة متابعة عبق الحياة خلال سبتمبر 2026.",
     results: [
       { metric: "3.3×", label: "التعاقدات الشهرية", copy: "نمت التعاقدات الشهرية من 18 عقدًا في ديسمبر 2025 إلى 60 عقدًا في يوليو 2026، بما يعادل 3.3 أضعاف أو زيادة تقارب 233%." },
       { metric: "5 ريالات", label: "متوسط تكلفة العميل المحتمل", copy: "انخفض متوسط تكلفة العميل المحتمل من 14–17 ريالًا إلى 5 ريالات، بينما حققت حملة السجل الرياضي أفضل تكلفة مسجلة بلغت 1.99 ريال للعميل المحتمل." },
