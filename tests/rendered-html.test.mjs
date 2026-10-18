@@ -50,13 +50,14 @@ test("public case-study set contains only the three approved projects", () => {
   assert.doesNotMatch(caseContent, /Al-Waha|Heaven Caf/i);
 });
 
-test("case studies use the approved text-first structure and secure external links", () => {
+test("case studies combine approved narrative with secure media", () => {
   for (const component of ["AbqCaseStudyPage.tsx", "KhamCaseStudyPage.tsx", "LinaCaseStudyPage.tsx"]) {
     const value = readFileSync(new URL(`../app/components/${component}`, import.meta.url), "utf8");
     assert.match(value, /rel="noopener noreferrer"/);
     assert.match(value, /target="_blank"/);
-    assert.match(value, /v2-case-monogram/);
-    assert.doesNotMatch(value, /next\/image|<Image|<video|<iframe/);
+    assert.match(value, /v2-case-visual/);
+    assert.match(value, /next\/image/);
+    assert.match(value, /<Image/);
   }
   assert.match(caseContent, /Project Overview/);
   assert.match(caseContent, /Market & Industry/);
@@ -85,11 +86,15 @@ test("Lina stays consistently named and positioned as an evolving project", () =
   assert.doesNotMatch(caseContent, /\b(?:Leen|Lena)\b/);
 });
 
-test("Habiba's portrait is the only rendered photographic image", () => {
-  assert.equal((components.match(/<Image\b/g) || []).length, 1);
+test("case-study visual evidence and video previews are restored", () => {
+  assert.ok((components.match(/<Image\b/g) || []).length >= 4);
   assert.equal((components.match(/src={profileImageUrl}/g) || []).length, 1);
   assert.match(components, /<Image[^>]*priority[^>]*src={profileImageUrl}/);
-  assert.doesNotMatch(components, /<video\b|<iframe\b/);
+  assert.match(components, /youtube-nocookie\.com/);
+  assert.match(components, /referrerPolicy="strict-origin-when-cross-origin"/);
+  assert.match(components, /<video controls/);
+  assert.match(siteContent, /lina-video-1\.mp4/);
+  assert.match(siteContent, /contracts-september-2026\.png/);
 });
 
 test("customer-facing copy avoids collective voice", () => {
