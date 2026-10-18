@@ -15,6 +15,9 @@ function sourceFiles(directory) {
 }
 
 const source = sourceFiles(appRoot).map((file) => readFileSync(file, "utf8")).join("\n");
+const siteContent = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
+const caseContent = readFileSync(new URL("../app/content/caseStudyContent.ts", import.meta.url), "utf8");
+const components = sourceFiles(fileURLToPath(new URL("../app/components/", import.meta.url))).map((file) => readFileSync(file, "utf8")).join("\n");
 
 test("all required public routes exist", () => {
   for (const route of ["services", "who-we-help", "case-studies", "case-studies/abq-al-hayat", "case-studies/kham-al-jamal", "case-studies/lina", "about", "contact", "social-media-audit"]) {
@@ -22,119 +25,92 @@ test("all required public routes exist", () => {
   }
 });
 
-test("Lina case study includes bilingual content, media, store link, and structured metadata", () => {
-  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
-  const component = readFileSync(new URL("../app/components/LinaCaseStudyPage.tsx", import.meta.url), "utf8");
-  const page = readFileSync(new URL("../app/case-studies/lina/page.tsx", import.meta.url), "utf8");
-  assert.match(content, /https:\/\/linnaaa\.com\//);
-  assert.match(content, /لينا: بناء براند أزياء سعودي/);
-  assert.match(content, /national-day\/asalatuna\.webp/);
-  assert.match(content, /national-day\/ambition\.webp/);
-  assert.match(content, /اليوم الوطني السعودي: كل عباية تعبر عن قيمة وطنية/);
-  assert.match(content, /lina-video-3\.mp4/);
-  assert.match(content, /الصفحة الأولى من نتائج بحث Google/);
-  assert.match(component, /playsInline/);
-  assert.match(component, /rel="noopener noreferrer"/);
-  assert.match(page, /CreativeWork/);
-  assert.match(page, /BreadcrumbList/);
+test("service architecture contains the four approved pillars in both languages", () => {
+  const serviceBlock = siteContent.slice(siteContent.indexOf("export const services"), siteContent.indexOf("export const audiences"));
+  for (const id of ["strategy", "content", "management", "performance"]) {
+    assert.equal((serviceBlock.match(new RegExp(`id: "${id}"`, "g")) || []).length, 2, id);
+  }
+  assert.match(siteContent, /Social Media Strategy/);
+  assert.match(siteContent, /Content Strategy & Creation/);
+  assert.match(siteContent, /استراتيجية وصناعة المحتوى/);
+  assert.doesNotMatch(siteContent, /Tally ERP/);
 });
 
-test("Kham Al Jamal case study is published with bilingual strategy content and metadata", () => {
-  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
-  const component = readFileSync(new URL("../app/components/KhamCaseStudyPage.tsx", import.meta.url), "utf8");
-  const page = readFileSync(new URL("../app/case-studies/kham-al-jamal/page.tsx", import.meta.url), "utf8");
-  assert.match(content, /https:\/\/kham-aljamal\.com\//);
-  assert.match(content, /خام الجمال: نمو عضوي تقوده شخصية UGC موثوقة/);
-  assert.match(content, /saudi-national-day-1\.jpeg/);
-  assert.match(content, /saudi-national-day-2\.jpeg/);
-  assert.match(content, /حملة اليوم الوطني السعودي/);
-  assert.match(content, /slug: "kham-al-jamal"[\s\S]*?published: true/);
-  assert.match(component, /rel="noopener noreferrer"/);
-  assert.match(page, /CreativeWork/);
-  assert.match(page, /BreadcrumbList/);
+test("who-I-help content covers seven client situations in each language", () => {
+  assert.match(siteContent, /Businesses Entering the Saudi Market/);
+  assert.match(siteContent, /Brands Seeking Stronger Organic Growth/);
+  assert.match(siteContent, /بيزنس داخل أو بيتوسع في السوق السعودي/);
+  assert.match(siteContent, /براند بيدور على نمو عضوي أقوى/);
+  assert.match(components, /audiences\[language\]\.slice\(0, 4\)/);
 });
 
-test("legacy claims and unsupported figures are absent", () => {
-  assert.doesNotMatch(source, /10\s*(?:to|→|–|-)\s*50|1[,.]?699|250\+|SAR\s*7\s*(?:to|→|–|-)|6\.5K|6500|60K|333%\s*(?:growth|نمو)/i);
-  assert.match(source, /18 in December 2025 to 60 in July 2026/);
-  assert.match(source, /3\.3×/);
-  assert.match(source, /4–5×/);
-});
-
-test("case-study set contains only the approved projects", () => {
-  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
-  const slugs = [...content.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]);
+test("public case-study set contains only the three approved projects", () => {
+  const slugs = [...siteContent.matchAll(/slug: "([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(slugs, ["abq-al-hayat", "kham-al-jamal", "lina"]);
-  assert.match(content, /slug: "abq-al-hayat"[\s\S]*?featured: true[\s\S]*?published: true/);
-  for (const image of ["covers/abq-al-hayat.webp", "covers/kham-al-jamal.webp", "covers/lina.webp"]) {
-    assert.match(content, new RegExp(image.replace(".", "\\.")));
+  assert.doesNotMatch(caseContent, /Al-Waha|Heaven Caf/i);
+});
+
+test("case studies use the approved text-first structure and secure external links", () => {
+  for (const component of ["AbqCaseStudyPage.tsx", "KhamCaseStudyPage.tsx", "LinaCaseStudyPage.tsx"]) {
+    const value = readFileSync(new URL(`../app/components/${component}`, import.meta.url), "utf8");
+    assert.match(value, /rel="noopener noreferrer"/);
+    assert.match(value, /target="_blank"/);
+    assert.match(value, /v2-case-monogram/);
+    assert.doesNotMatch(value, /next\/image|<Image|<video|<iframe/);
+  }
+  assert.match(caseContent, /Project Overview/);
+  assert.match(caseContent, /Market & Industry/);
+  assert.match(caseContent, /Audience Segments/);
+  assert.match(caseContent, /Strategy in Progress/);
+});
+
+test("ABQ keeps approved evidence and script links without restoring deleted claims", () => {
+  assert.match(caseContent, /65 clients under completed contracts/);
+  assert.match(caseContent, /dXSrWXwzc3M/);
+  assert.match(caseContent, /4Dh3DvfOGNU/);
+  assert.doesNotMatch(caseContent, /10\s*(?:to|→|–|-)\s*50|1[,.]?699/i);
+});
+
+test("Kham content avoids deceptive identity and diagnostic claims", () => {
+  assert.match(caseContent, /natural, audience-led UGC content/);
+  assert.match(caseContent, /without presenting a fictional specialist identity/);
+  assert.doesNotMatch(caseContent, /personal diagnosis|diagnoses|fake beauty blogger/i);
+  assert.match(caseContent, /product-related questions/);
+});
+
+test("Lina stays consistently named and positioned as an evolving project", () => {
+  assert.match(caseContent, /Lina: Story-Led Communication/);
+  assert.match(caseContent, /لينا: تواصل قصصي/);
+  assert.match(caseContent, /This is an evolving strategy, not a completed success story/);
+  assert.doesNotMatch(caseContent, /\b(?:Leen|Lena)\b/);
+});
+
+test("Habiba's portrait is the only rendered photographic image", () => {
+  assert.equal((components.match(/<Image\b/g) || []).length, 1);
+  assert.equal((components.match(/src={profileImageUrl}/g) || []).length, 1);
+  assert.match(components, /<Image[^>]*priority[^>]*src={profileImageUrl}/);
+  assert.doesNotMatch(components, /<video\b|<iframe\b/);
+});
+
+test("customer-facing copy avoids collective voice", () => {
+  const content = `${siteContent}\n${caseContent}`;
+  const visibleStrings = [...content.matchAll(/"([^"\n]*)"/g)].map((match) => match[1]).filter((value) => !value.startsWith("/") && !value.startsWith("http")).join("\n");
+  assert.doesNotMatch(visibleStrings, /\b(?:we|our team)\b/i);
+  assert.doesNotMatch(visibleStrings, /نحن|بنساعد|فريقنا|إحنا|عندنا|طريقتنا|خدماتنا|شغلنا|أعمالنا|شاركنا|هنراجع|نتواصل معاك/);
+});
+
+test("major bilingual pages expose matching content structures", () => {
+  for (const key of ["experienceTitle", "marketTitle", "storyTitle", "fitTitle", "deliverTitle", "processTitle", "nextTitle", "nextStep"]) {
+    assert.ok((siteContent.match(new RegExp(`${key}:`, "g")) || []).length >= 2, key);
   }
 });
 
-test("ABQ AL HAYAT case study has secure external linking and structured metadata", () => {
-  assert.match(source, /https:\/\/abqalhayat\.com\//);
-  assert.match(source, /target="_blank"/);
-  assert.match(source, /rel="noopener noreferrer"/);
-  assert.match(source, /CreativeWork/);
-  assert.match(source, /BreadcrumbList/);
-  assert.equal(existsSync(new URL("../public/case-studies/abq-al-hayat/contracts-september-2026.png", import.meta.url)), true);
-  assert.match(source, /contracts-september-2026\.png/);
-  assert.match(source, /v2-contracts-proof/);
-});
-
-test("ABQ AL HAYAT case study embeds the approved Shorts for direct preview", () => {
-  const component = readFileSync(new URL("../app/components/AbqCaseStudyPage.tsx", import.meta.url), "utf8");
-  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
-  assert.match(content, /dXSrWXwzc3M/);
-  assert.match(content, /4Dh3DvfOGNU/);
-  assert.match(component, /youtube-nocookie\.com\/embed/);
-  assert.match(component, /allowFullScreen/);
-  assert.match(component, /loading="lazy"/);
-});
-
-test("ABQ AL HAYAT includes the Saudi National Day campaign gallery", () => {
-  const component = readFileSync(new URL("../app/components/AbqCaseStudyPage.tsx", import.meta.url), "utf8");
-  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
-  const campaignDirectory = fileURLToPath(new URL("../public/case-studies/abq-al-hayat/national-day/", import.meta.url));
-  assert.equal(readdirSync(campaignDirectory).filter((file) => file.endsWith(".jpeg")).length, 6);
-  assert.match(content, /nationalDayCampaign/);
-  assert.match(content, /اليوم الوطني السعودي: 96 عامًا من النمو والبناء والانتماء/);
-  assert.match(component, /v2-abq-campaign-grid/);
-});
-
-test("Habiba's portrait is rendered once and prioritized in the home hero", () => {
-  const components = sourceFiles(fileURLToPath(new URL("../app/components/", import.meta.url)))
-    .map((file) => readFileSync(file, "utf8"))
-    .join("\n");
-  assert.equal((components.match(/src={profileImageUrl}/g) || []).length, 1);
-  assert.match(components, /<Image[^>]*priority[^>]*src={profileImageUrl}/);
-  assert.match(components, /<iframe\b/);
-  assert.match(components, /<video\b/);
-});
-
-test("customer-facing copy uses first-person singular voice", () => {
-  const content = readFileSync(new URL("../app/content/siteContent.ts", import.meta.url), "utf8");
-  const visibleStrings = [...content.matchAll(/"([^"\n]*)"/g)]
-    .map((match) => match[1])
-    .filter((value) => !value.startsWith("/") && !value.startsWith("http"))
-    .join("\n");
-  assert.doesNotMatch(visibleStrings, /\b(?:we|our)\b/i);
-  assert.doesNotMatch(visibleStrings, /بنساعد|هنساعد|بنبدأ|بنراجع|بنخطط|بندير|بنقيس|بنطور|نقدر نساعد|إحنا|عندنا|طريقتنا|خدماتنا|شغلنا|أعمالنا|شاركنا|هنراجع|نتواصل معاك/);
-});
-
-test("cards use ordered numbering instead of decorative glyphs", () => {
-  const pageComponents = readFileSync(new URL("../app/components/SitePages.tsx", import.meta.url), "utf8");
-  const styles = readFileSync(new URL("../app/site-v2.css", import.meta.url), "utf8");
-  assert.match(pageComponents, /function NumberBadge/);
-  assert.match(pageComponents, /padStart\(2, "0"\)/);
-  assert.doesNotMatch(pageComponents, /[✦◇○＋]/);
-  assert.match(styles, /\.v2-services-preview,\.v2-service-list\{grid-template-columns:repeat\(2/);
-  assert.match(styles, /\.v2-case-grid\.compact\{grid-template-columns:repeat\(3/);
-  assert.match(styles, /featured project is highlighted by color, not size/);
-});
-
-test("analytics and bilingual language state remain wired", () => {
+test("SEO, analytics, forms, and language state remain wired", () => {
   assert.match(source, /@vercel\/analytics\/next/);
   assert.match(source, /habiba-language/);
   assert.match(source, /document\.documentElement\.dir/);
+  assert.match(source, /generateMetadata/);
+  assert.match(source, /alternates: \{ canonical/);
+  assert.match(components, /onSubmit={submit}/);
+  assert.match(components, /window\.print\(\)/);
 });

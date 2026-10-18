@@ -25,13 +25,13 @@ function PageHero({ eyebrow, title, intro }: { eyebrow: string; title: string; i
   );
 }
 
-function Process() {
+function Process({ intro }: { intro?: string }) {
   const { language } = useLanguage();
   const text = copy[language].common;
   return (
     <section className="v2-section v2-process-section">
       <div className="v2-shell">
-        <div className="v2-section-heading"><h2>{text.processTitle}</h2><p>{text.processIntro}</p></div>
+        <div className="v2-section-heading"><h2>{text.processTitle}</h2><p>{intro ?? text.processIntro}</p></div>
         <div className="v2-process-grid">
           {processSteps[language].map(([title, details], index) => (
             <article key={title}><span className="v2-step-number">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{details}</p></article>
@@ -50,18 +50,10 @@ function CaseGrid({ compact = false }: { compact?: boolean }) {
       {caseStudies.map((item, index) => {
         const className = `v2-case-card ${item.featured ? "featured" : ""} ${item.published ? "published" : ""}`;
         const body = <>
-          <div className="v2-case-visual">
-            <Image
-              alt={language === "ar" ? `صورة مشروع ${item.name.ar}` : `${item.name.en} project image`}
-              fill
-              sizes={item.featured ? "(max-width: 800px) calc(100vw - 32px), 430px" : "(max-width: 800px) calc(100vw - 32px), 50vw"}
-              src={item.coverImage}
-            />
-          </div>
           <div className="v2-case-copy">
             <div className="v2-case-meta"><NumberBadge index={index} /><span>{item.category[language]}</span>{item.featured ? <b>{text.common.featured}</b> : null}</div>
             <h3>{item.published ? item.title[language] : item.name[language]}</h3>
-            <p>{item.published ? item.summary[language] : text.common.caseSoon}</p>
+            <p>{item.published ? (compact ? text.home.casePreviews[index] : item.summary[language]) : text.common.caseSoon}</p>
             {item.published ? <span className="v2-case-cta">{item.cta[language]}<Arrow /></span> : null}
           </div>
         </>;
@@ -131,7 +123,7 @@ export function HomePage() {
         </section>
 
         <section className="v2-section v2-shell v2-about-preview">
-          <div><h2>{text.home.aboutTitle}</h2><p>{text.home.aboutCopy}</p><Link className="v2-text-link" href="/about">{text.home.aboutCta}<Arrow /></Link></div>
+          <div><h2>{text.home.aboutTitle}</h2><p>{text.home.aboutCopy}</p><p>{text.home.aboutCopySecond}</p><Link className="v2-text-link" href="/about">{text.home.aboutCta}<Arrow /></Link></div>
         </section>
 
         <section className="v2-section v2-tint">
@@ -139,7 +131,7 @@ export function HomePage() {
             <div className="v2-section-heading"><h2>{text.home.servicesTitle}</h2><Link className="v2-text-link" href="/services">{text.common.learn}<Arrow /></Link></div>
             <div className="v2-card-grid v2-services-preview">
               {services[language].map((service, index) => (
-                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><NumberBadge index={index} /><h3>{service.title}</h3><p>{service.preview}</p><Arrow /></Link>
+                <Link className="v2-info-card" href={`/services#${service.id}`} key={service.id}><NumberBadge index={index} /><h3>{service.title}</h3><p>{text.home.servicePreviews[index]}</p><Arrow /></Link>
               ))}
             </div>
           </div>
@@ -148,7 +140,7 @@ export function HomePage() {
         <section className="v2-section v2-shell">
           <div className="v2-section-heading"><h2>{text.home.helpTitle}</h2><Link className="v2-text-link" href="/who-we-help">{text.common.learn}<Arrow /></Link></div>
           <div className="v2-card-grid v2-audience-preview">
-            {audiences[language].map((item, index) => <Link className="v2-audience-card" href="/who-we-help" key={item.title}><NumberBadge index={index} /><h3>{item.title}</h3><p>{item.copy}</p><Arrow /></Link>)}
+            {audiences[language].slice(0, 4).map((item, index) => <Link className="v2-audience-card" href="/who-we-help" key={item.title}><NumberBadge index={index} /><h3>{item.title}</h3><p>{text.home.audiencePreviews[index]}</p><Arrow /></Link>)}
           </div>
         </section>
 
@@ -160,7 +152,7 @@ export function HomePage() {
           </div>
         </section>
 
-        <Process />
+        <Process intro={text.home.processIntro} />
 
         <section className="v2-section v2-shell">
           <div className="v2-section-heading"><h2>{text.home.pathwaysTitle}</h2></div>
@@ -192,7 +184,7 @@ export function ServicesPage() {
               <div><strong>{text.services.labels[2]}</strong><ul>{service.covers.map((item) => <li key={item}>{item}</li>)}</ul></div>
               <div><strong>{text.services.labels[3]}</strong><p>{service.outcome}</p></div>
             </div>
-            <Link className="v2-text-link" href={service.id === "audit" ? "/social-media-audit" : "/contact"}>{service.cta}<Arrow /></Link>
+            <Link className="v2-text-link" href="/contact">{service.cta}<Arrow /></Link>
           </article>
         ))}
       </section>
@@ -224,7 +216,7 @@ export function WhoWeHelpPage() {
 export function CaseStudiesPage() {
   const { language } = useLanguage();
   const text = copy[language];
-  return <SiteFrame><main><PageHero eyebrow={text.cases.eyebrow} title={text.cases.title} intro={text.cases.intro} /><section className="v2-section v2-shell"><CaseGrid /></section><FinalCta title={text.home.finalTitle} body={text.home.finalCopy} /></main></SiteFrame>;
+  return <SiteFrame><main><PageHero eyebrow={text.cases.eyebrow} title={text.cases.title} intro={text.cases.intro} /><section className="v2-section v2-shell"><CaseGrid /></section><FinalCta title={text.cases.finalTitle} body={text.cases.finalCopy} /></main></SiteFrame>;
 }
 
 export function AboutPage() {
@@ -236,9 +228,14 @@ export function AboutPage() {
         <div className="v2-about-heading"><p className="v2-kicker">{text.about.eyebrow}</p><h1>{text.about.title}</h1></div>
         <div className="v2-about-statement"><span aria-hidden="true" className="v2-statement-number">01</span><p className="v2-lead">{text.about.body}</p></div>
       </section>
+      <section className="v2-section v2-shell v2-about-details">
+        <article><span className="v2-statement-number">02</span><h2>{text.about.experienceTitle}</h2><p>{text.about.experience}</p></article>
+        <article><span className="v2-statement-number">03</span><h2>{text.about.marketTitle}</h2><p>{text.about.marketCopy}</p></article>
+        <article><span className="v2-statement-number">04</span><h2>{text.about.storyTitle}</h2><p>{text.about.storyCopy}</p></article>
+      </section>
       <section className="v2-section v2-tint"><div className="v2-shell"><div className="v2-section-heading"><h2>{text.about.valuesTitle}</h2></div><div className="v2-values-grid">{text.about.values.map(([title, body]) => <article key={title}><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
       <Process />
-      <FinalCta title={text.home.finalTitle} body={text.home.finalCopy} />
+      <FinalCta title={text.about.finalTitle} body={text.about.finalCopy} />
     </main></SiteFrame>
   );
 }

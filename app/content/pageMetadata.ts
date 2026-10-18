@@ -6,18 +6,18 @@ import type { Language } from "./siteContent";
 const pages = {
   home: {
     path: "/",
-    en: ["Strategic Social Media for Business Growth", "Social media strategy, content, management, audits, and paid media connected to clear business objectives."],
-    ar: ["سوشيال ميديا استراتيجية لنمو البيزنس", "استراتيجية محتوى وإدارة حسابات وتحليل أداء وإعلانات مدفوعة مرتبطة بأهداف واضحة للبيزنس."],
+    en: ["Social Media Strategy for Saudi & GCC Markets", "I build social media strategy, content systems, and account operations connected to audience behavior and business growth."],
+    ar: ["استراتيجية سوشيال ميديا للسوق السعودي والخليجي", "ببني استراتيجية سوشيال ميديا ومنظومات محتوى وإدارة حسابات مرتبطة بسلوك الجمهور ونمو البيزنس."],
   },
   services: {
     path: "/services",
-    en: ["Social Media Services", "Explore social media management, content strategy, account audits, and paid media built around business needs."],
-    ar: ["خدمات السوشيال ميديا", "اكتشف إدارة حسابات السوشيال ميديا واستراتيجية المحتوى وتحليل الحسابات وإدارة الإعلانات وفق احتياج البيزنس."],
+    en: ["Social Media Strategy, Content & Account Management", "Explore strategy, content creation, account management, and performance improvement built around business and audience needs."],
+    ar: ["استراتيجية ومحتوى وإدارة حسابات السوشيال ميديا", "استكشف الاستراتيجية وصناعة المحتوى وإدارة الحسابات وتحسين الأداء وفق احتياج البيزنس والجمهور."],
   },
   help: {
     path: "/who-we-help",
-    en: ["Who I Help", "Strategic social media support for growing businesses, e-commerce brands, personal brands, experts, and local businesses."],
-    ar: ["مين أقدر أساعد", "حلول سوشيال ميديا استراتيجية للبيزنس المتنامي والتجارة الإلكترونية والبراندات الشخصية والخبراء والأنشطة المحلية."],
+    en: ["Who I Help in Saudi & GCC Markets", "Social media support for market entry, structured communication, Saudi-dialect content, aligned teams, and stronger organic growth."],
+    ar: ["مين أقدر أساعد في السوق السعودي والخليجي", "دعم سوشيال ميديا لدخول السوق وتنظيم التواصل والمحتوى السعودي وتوافق الفرق وتقوية النمو العضوي."],
   },
   cases: {
     path: "/case-studies",
@@ -26,8 +26,8 @@ const pages = {
   },
   about: {
     path: "/about",
-    en: ["About", "Learn how Habiba Dapour approaches social media as a strategic, creative, transparent, and collaborative part of business growth."],
-    ar: ["عن Habiba Dapour", "اتعرف على طريقة Habiba Dapour في التعامل مع السوشيال ميديا كجزء استراتيجي وإبداعي وواضح من نمو البيزنس."],
+    en: ["About Habiba Dapour", "Learn how I connect brand understanding, Saudi-market insight, content strategy, and performance with practical business goals."],
+    ar: ["عن Habiba Dapour", "اتعرف على طريقتي في ربط فهم البراند والسوق السعودي واستراتيجية المحتوى والأداء بأهداف البيزنس العملية."],
   },
   contact: {
     path: "/contact",

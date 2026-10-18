@@ -79,3 +79,25 @@ html{scroll-padding-top:88px}body{overflow-x:hidden;background:var(--v2-paper);c
 .v2-contracts-proof-image img{object-fit:contain}
 .v2-contracts-proof figcaption{margin-top:10px;color:#bfaec4;font-size:11px;line-height:1.6}
 @media(max-width:800px){.v2-contracts-proof{grid-template-columns:1fr}}
+
+/* Content-led portfolio: one photographic portrait, text-first proof elsewhere. */
+.v2-case-card,.v2-case-card.featured,.v2-case-grid.compact .v2-case-card,.v2-case-grid.compact .v2-case-card.featured{display:block;height:100%;min-height:390px;padding:clamp(30px,4vw,46px);grid-template-columns:none;grid-template-rows:none}
+.v2-case-grid.compact .v2-case-card,.v2-case-grid.compact .v2-case-card.featured{min-height:470px}
+.v2-case-copy,.v2-case-card.featured .v2-case-copy,.v2-case-grid.compact .v2-case-copy,.v2-case-grid.compact .v2-case-card.featured .v2-case-copy{height:100%;max-width:760px;padding:0}
+.v2-problem li:before,.v2-process-grid h3:before{display:none}
+.v2-about-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.v2-about-details article,.v2-case-facts article,.v2-case-text-grid article,.v2-audit-explainer article{padding:30px;border:1px solid var(--v2-line);border-radius:var(--v2-radius);background:#fff}
+.v2-about-details h2,.v2-case-facts h2,.v2-audit-explainer h2{margin:0 0 16px;font-size:clamp(22px,2.5vw,31px);line-height:1.4}
+.v2-about-details p,.v2-case-facts p,.v2-case-text-grid p,.v2-audit-explainer p,.v2-audit-explainer li{margin:0;color:var(--v2-muted);line-height:1.8}
+.v2-case-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.v2-case-facts article>span,.v2-case-text-grid article>span{display:block;margin-bottom:28px;color:var(--v2-pink-dark);font-size:13px;font-weight:900;letter-spacing:.14em}
+.v2-case-strategy>div{max-width:1000px}
+.v2-case-strategy h2{margin:0;font-size:clamp(28px,4vw,48px);line-height:1.55;letter-spacing:-.03em}
+.v2-case-text-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.v2-case-text-grid h3{margin:0 0 14px;font-size:21px;line-height:1.45}
+.v2-case-outcome{max-width:920px;margin:0;color:#eee1f1;font-size:clamp(22px,3vw,34px);line-height:1.7}
+.v2-audit-explainer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.v2-audit-explainer ul,.v2-audit-explainer ol{display:grid;gap:10px;margin:0;padding-inline-start:22px}
+.v2-contact-next{margin:28px 0 0;padding:20px;border-inline-start:3px solid var(--v2-pink);color:var(--v2-muted);background:var(--v2-blush);line-height:1.8}
+@media(max-width:900px){.v2-about-details{grid-template-columns:1fr}.v2-case-text-grid{grid-template-columns:1fr}}
+@media(max-width:800px){.v2-case-facts,.v2-audit-explainer{grid-template-columns:1fr}.v2-case-card,.v2-case-card.featured,.v2-case-grid.compact .v2-case-card,.v2-case-grid.compact .v2-case-card.featured{min-height:0;padding:28px}}

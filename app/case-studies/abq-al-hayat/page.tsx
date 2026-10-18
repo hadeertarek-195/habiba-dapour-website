@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
 import AbqCaseStudyPage from "../../components/AbqCaseStudyPage";
+import { caseStudyWebCopy } from "../../content/caseStudyContent";
 import { siteUrlString } from "../../content/siteConfig";
 import { abqCaseStudy, type Language } from "../../content/siteContent";
 
@@ -27,16 +28,15 @@ export async function generateMetadata(): Promise<Metadata> {
       url: path,
       locale: isArabic ? "ar_EG" : "en_US",
       alternateLocale: [isArabic ? "en_US" : "ar_EG"],
-      images: [{ url: abqCaseStudy.coverImage, alt: abqCaseStudy[language].imageAlt }],
     },
-    twitter: { card: "summary_large_image", title, description, images: [abqCaseStudy.coverImage] },
+    twitter: { card: "summary", title, description },
   };
 }
 
 export default async function Page() {
   const cookieStore = await cookies();
   const language: Language = cookieStore.get("habiba-language")?.value === "ar" ? "ar" : "en";
-  const text = abqCaseStudy[language];
+  const text = caseStudyWebCopy.abq[language];
   const canonical = new URL(path, siteUrlString).toString();
   const schema = {
     "@context": "https://schema.org",
@@ -47,7 +47,6 @@ export default async function Page() {
         alternateName: "ABQ AL HAYAT Case Study",
         description: text.subtitle,
         url: canonical,
-        image: abqCaseStudy.coverImage,
         inLanguage: language === "ar" ? "ar-EG" : "en",
         author: { "@type": "Person", name: "Habiba Dapour" },
         about: { "@type": "Organization", name: "ABQ AL HAYAT", url: abqCaseStudy.website },

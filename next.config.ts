@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Allows isolated local build verification without changing Vercel's default `.next` output.
+  distDir: process.env.NEXT_DIST_DIR ?? ".next",
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "i.ibb.co", pathname: "/Z1vvQmQ0/2.webp" },

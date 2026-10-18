@@ -43,6 +43,12 @@ export default function AuditPageV2() {
         <section className="v2-section v2-tint">
           <div className="v2-shell"><div className="v2-section-heading"><h2>{text.areasTitle}</h2></div><div className="v2-audit-areas">{auditAreas.map((area) => <div key={area.id}><span>✓</span>{area[language]}</div>)}</div></div>
         </section>
+        <section className="v2-section v2-shell v2-audit-explainer">
+          <article><h2>{text.fitTitle}</h2><ul>{text.fit.map((item) => <li key={item}>{item}</li>)}</ul></article>
+          <article><h2>{text.deliverTitle}</h2><ul>{text.deliver.map((item) => <li key={item}>{item}</li>)}</ul></article>
+          <article><h2>{text.processTitle}</h2><ol>{text.process.map((item) => <li key={item}>{item}</li>)}</ol></article>
+          <article><h2>{text.nextTitle}</h2><p>{text.next}</p></article>
+        </section>
         <section className="v2-section v2-shell v2-audit-form-section">
           <div className="v2-form-intro"><p className="v2-kicker">{text.eyebrow}</p><h2>{text.formTitle}</h2><p>{text.formIntro}</p></div>
           {submitted ? (

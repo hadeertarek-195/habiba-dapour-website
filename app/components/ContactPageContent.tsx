@@ -28,6 +28,7 @@ export default function ContactPageContent() {
           <aside className="v2-contact-intro">
             <p className="v2-kicker">{text.eyebrow}</p><h1>{text.title}</h1><p className="v2-lead">{text.intro}</p>
             <div className="v2-contact-links"><a href="mailto:habiba.dapour@gmail.com">habiba.dapour@gmail.com</a><a href="tel:+201004658868">+20 100 465 8868</a></div>
+            <p className="v2-contact-next">{text.nextStep}</p>
           </aside>
           <div className="v2-form-wrap">
             {submitted ? (
