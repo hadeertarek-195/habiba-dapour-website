@@ -373,6 +373,15 @@ export const linaCaseStudy = {
     { src: "/case-studies/lina/lina-video-2.mp4", title: { en: "Lina AI brand video 2", ar: "فيديو براند لينا بالذكاء الاصطناعي 2" } },
     { src: "/case-studies/lina/lina-video-3.mp4", title: { en: "Lina AI brand video 3", ar: "فيديو براند لينا بالذكاء الاصطناعي 3" } },
   ],
+  youtubeVideos: [
+    { youtubeId: "OdnW6hZ-VBk", title: { en: "Lina campaign video 1", ar: "فيديو حملة لينا 1" } },
+    { youtubeId: "1q-twZTgiAY", title: { en: "Lina campaign video 2", ar: "فيديو حملة لينا 2" } },
+    { youtubeId: "ka86UOmcoPM", title: { en: "Lina campaign video 3", ar: "فيديو حملة لينا 3" } },
+    { youtubeId: "UXOpBAn7CRI", title: { en: "Lina campaign video 4", ar: "فيديو حملة لينا 4" } },
+    { youtubeId: "G14qIfu4KVE", title: { en: "Lina campaign video 5", ar: "فيديو حملة لينا 5" } },
+    { youtubeId: "tluEUTw_J3c", title: { en: "Lina campaign video 6", ar: "فيديو حملة لينا 6" } },
+    { youtubeId: "jZolOaxr9oE", title: { en: "Lina campaign video 7", ar: "فيديو حملة لينا 7" } },
+  ],
   tags: ["Brand Strategy", "Saudi Fashion", "AI Content", "Storytelling", "E-commerce", "SEO"],
   en: {
     breadcrumb: "Case Studies",

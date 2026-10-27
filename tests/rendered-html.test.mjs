@@ -94,6 +94,9 @@ test("case-study visual evidence and video previews are restored", () => {
   assert.match(components, /referrerPolicy="strict-origin-when-cross-origin"/);
   assert.match(components, /<video controls/);
   assert.match(siteContent, /lina-video-1\.mp4/);
+  assert.match(siteContent, /OdnW6hZ-VBk/);
+  assert.match(siteContent, /jZolOaxr9oE/);
+  assert.match(components, /أعددت الـstoryboards/);
   assert.match(siteContent, /contracts-september-2026\.png/);
 });
 
